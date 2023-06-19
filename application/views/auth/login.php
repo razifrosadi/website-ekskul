@@ -409,19 +409,22 @@
                                         <i class="fa fa-google text-white text-lg"></i>
                                     </a>
                                 </div>
+                                <?= $this->session->flashdata('message'); ?>
+                                <?= $this->session->sess_destroy('message'); ?>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
-                        <form role="form" class="text-start">
+                        <form role="form" class="text-start" method="post" action="<?= base_url('auth'); ?>">
                             <div class="input-group input-group-outline my-3">
-                                <label class="form-label">Email</label>
-                                <input type="text" class="form-control" id="email" name="email">
+                                <input type="text" class="form-control" id="email" name="email" placeholder="Email Address" value="<?= set_value('email'); ?>">
                             </div>
+                            <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
                             <div class="input-group input-group-outline mb-3">
                                 <label class="form-label">Password</label>
                                 <input type="password" class="form-control" id="password" name="password">
                             </div>
+                            <?= form_error('password', '<small class="text-danger pl-3">', '</small>'); ?>
                             <div class="form-check form-switch d-flex align-items-center mb-3">
                                 <input class="form-check-input" type="checkbox" id="rememberMe" checked>
                                 <label class="form-check-label mb-0 ms-3" for="rememberMe">Remember me</label>

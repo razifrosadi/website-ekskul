@@ -11,9 +11,50 @@ class Auth extends CI_Controller
 
 	public function index()
 	{
-		$this->load->view('templates/auth_header');
-		$this->load->view('auth/login');
-		$this->load->view('templates/auth_footer');
+		$this->form_validation->set_rules('email', 'Email address', 'trim|required|valid_email');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required');
+		if ($this->form_validation->run() == FALSE) {
+			$data['title'] = 'Login Page';
+			$this->load->view('templates/auth_header', $data);
+			$this->load->view('auth/login');
+			$this->load->view('templates/auth_footer');
+		} else {
+			$this->_login();
+		}
+	}
+
+	private function _login()
+	{
+		$email = $this->input->post('email');
+		$password = $this->input->post('password');
+
+		$user = $this->db->get_where('user', ['email' => $email])->row_array();
+		if ($user) {
+			//usernya ada
+			if ($user['is_active'] == 1) {
+				//cek password
+				if (password_verify($password, $user['password'])) {
+					$data = [
+						'email' => $user['email'],
+						'role_id' => $user['role_id'],
+					];
+					$this->session->set_userdata($data);
+					redirect('user');
+				} else {
+					$this->session->set_flashdata('message', '<div class="alert alert-danger text-white font-weight-bold" role="alert">
+			Wrong password!</div>');
+					redirect('auth');
+				}
+			} else {
+				$this->session->set_flashdata('message', '<div class="alert alert-danger text-white font-weight-bold" role="alert">
+			This accont has not been created!</div>');
+				redirect('auth');
+			}
+		} else {
+			$this->session->set_flashdata('message', '<div class="alert alert-danger text-white font-weight-bold" role="alert">
+			Account is not Registered!</div>');
+			redirect('auth');
+		}
 	}
 
 	public function registration()
@@ -33,7 +74,31 @@ class Auth extends CI_Controller
 			$this->load->view('auth/registration');
 			$this->load->view('templates/auth_footer');
 		} else {
-			echo 'Data berhasil ditambahkan!';
+			$data = [
+				'name' => htmlspecialchars($this->input->post('name', true)),
+				'email' => htmlspecialchars($this->input->post('email', true)),
+				'image' => 'default.jpg',
+				'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
+				'role_id' => 2,
+				'is_active' => 1,
+				'date_created' => time()
+			];
+
+			$this->db->insert('user', $data);
+			$this->session->set_flashdata('message', '<div class="alert alert-success text-white font-weight-bold" role="alert">
+			Congratulations! youre account registered. Please log in now!</div>');
+			redirect('auth');
 		}
+	}
+
+
+	public function logout()
+	{
+		$this->session->unset_userdata('email');
+		$this->session->unset_userdata('role_id');
+
+		$this->session->set_flashdata('message', '<div class="alert alert-success text-white font-weight-bold" role="alert">
+			You have been logged out!</div>');
+		redirect('auth');
 	}
 }
