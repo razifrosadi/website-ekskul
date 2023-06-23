@@ -42,7 +42,7 @@ class Auth extends CI_Controller
 					if ($user['role_id'] == 1) {
 						redirect('admin');
 					} elseif ($user['role_id'] == 2) {
-						redirect('siswa');
+						redirect('user');
 					} elseif ($user['role_id'] == 3) {
 						redirect('ketua');
 					}
@@ -106,5 +106,10 @@ class Auth extends CI_Controller
 		$this->session->set_flashdata('message', '<div class="alert alert-success text-white font-weight-bold" role="alert">
 			You have been logged out!</div>');
 		redirect('auth');
+	}
+
+	public function blocked()
+	{
+		$this->load->view('auth/blocked');
 	}
 }
