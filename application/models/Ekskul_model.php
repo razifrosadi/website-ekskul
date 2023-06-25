@@ -12,21 +12,7 @@ class Ekskul_model extends CI_Model
         return $query->result_array();
     }
 
-    public function getAllKetua()
-    {
-        $this->db->select('*');
-        $this->db->from('ekskul');
-        $this->db->join('user', 'ekskul.ketua_id = user.id');
-        $query = $this->db->get();
-        return $query->result_array();
-    }
-    public function getAllKetuaEkskul()
-    {
-        $this->db->select('*');
-        $this->db->from('user');
-        $query = $this->db->get();
-        return $query->result_array();
-    }
+
     public function getAllKategori()
     {
         $this->db->select('*');

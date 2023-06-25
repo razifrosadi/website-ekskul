@@ -27,13 +27,11 @@ class Admin extends CI_Controller
 
     public function add_new_ekskul()
     {
-        $data['title'] = 'Add New Extracurriculars';
+        $data['title'] = 'Add New Ekskul';
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
         $data['ekskul'] = $this->ekskul->getAllEkskul();
         $data['kategori'] = $this->ekskul->getAllKategori();
-        $data['ketua'] = $this->ekskul->getAllKetua();
-        $data['ketuaekskul'] = $this->ekskul->getAllKetuaEkskul();
 
         $this->form_validation->set_rules('nama_ekskul', 'Ekskul', 'required');
         $this->form_validation->set_rules('kategori_ekskul_id', 'Kategori', 'required');
@@ -48,7 +46,6 @@ class Admin extends CI_Controller
             $this->load->view('admin/add_new_ekskul', $data);
             $this->load->view('templates/footer');
         } else {
-
             $ekskulData = [
                 'nama_ekskul' => $this->input->post('nama_ekskul'),
                 'kategori_ekskul_id' => $this->input->post('kategori_ekskul_id'),
@@ -98,7 +95,7 @@ class Admin extends CI_Controller
 
 
         if ($this->form_validation->run() == FALSE) {
-            $data['title'] = 'Registration';
+            $data['title'] = 'Registrasi Akun Ketua';
             $data['user'] = $this->db->get_where('user', ['email' =>
             $this->session->userdata('email')])->row_array();
             $this->load->view('templates/header', $data);
