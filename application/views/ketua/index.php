@@ -1,7 +1,5 @@
 <div class="container-fluid py-4">
     <p class="h4"><?= $title; ?></p>
-    <?= form_error('menu', '<div class="alert alert-danger text-white font-weight-bold" role="alert">', '</div>'); ?>
-    <?= $this->session->flashdata('message'); ?>
 
     <div class="card">
         <div class="table-responsive">
@@ -11,6 +9,7 @@
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nama Anggota</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Kelas</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Alasan</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                     </tr>
                 </thead>
@@ -30,6 +29,10 @@
                         </td>
                         <td>
                             <p class="text-xs font-weight-bold mb-0">Kelas</p>
+                            <p class="text-xs text-secondary mb-0">Organization</p>
+                        </td>
+                        <td>
+                            <p class="text-xs font-weight-bold mb-0">karena ingin meningkatkan kepercayaan diri semenjak covid 19 saya menjadi orang yang introvert susah bergaul dan beradaptasi dari lingkungan baru semoga disini saya dapat diterima dengan baik oleh kakak kakak semuanya, salam kenal </p>
                             <p class="text-xs text-secondary mb-0">Organization</p>
                         </td>
                         <td class="align-middle text-center text-sm">

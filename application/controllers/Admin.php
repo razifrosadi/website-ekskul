@@ -35,7 +35,6 @@ class Admin extends CI_Controller
 
         $this->form_validation->set_rules('nama_ekskul', 'Ekskul', 'required');
         $this->form_validation->set_rules('kategori_ekskul_id', 'Kategori', 'required');
-        $this->form_validation->set_rules('logo_ekskul', 'Logo', 'required');
 
         // var_dump($data['ekskul']);
         // die;
@@ -46,14 +45,31 @@ class Admin extends CI_Controller
             $this->load->view('admin/add_new_ekskul', $data);
             $this->load->view('templates/footer');
         } else {
-            $data = [
-                'nama_ekskul' => $this->input->post('nama_ekskul'),
-                'kategori_ekskul_id' => $this->input->post('kategori_ekskul_id'),
-                'logo_ekskul' => $this->input->post('logo_ekskul')
-            ];
+            $nama = $this->input->post('nama_ekskul');
+            $kategori = $this->input->post('kategori_ekskul_id');
+            $upload_img = $_FILES['logo_ekskul']['name'];
 
+            // var_dump($upload_img);
+            // die;
 
-            $this->db->insert('ekskul', $data);
+            if ($upload_img) {
+                $config['upload_path']      = './assets/img/logo_ekskul/';
+                $config['allowed_types']    = 'jpg|png|jpeg';
+                $config['max_size']         = '2048';
+
+                $this->load->library('upload', $config);
+                if (!$this->upload->do_upload('logo_ekskul')) {
+                    echo "Upload gagal";
+                    die();
+                } else {
+                    $upload_img = $this->upload->data('file_name');
+                    $this->db->set('logo_ekskul', $upload_img);
+                }
+            }
+
+            $this->db->set('nama_ekskul', $nama);
+            $this->db->set('kategori_ekskul_id', $kategori);
+            $this->db->insert('ekskul');
             $this->session->set_flashdata('message', '<div class="alert alert-success text-white font-weight-bold" role="alert">
 			New Extracurriculars added!</div>');
             redirect('admin/add_new_ekskul');
@@ -97,5 +113,18 @@ class Admin extends CI_Controller
 			Congratulations! youre account registered. Please log in now!</div>');
             redirect('admin');
         }
+    }
+
+    public function berita()
+    {
+        $data['title'] = 'Berita';
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('admin/berita', $data);
+        $this->load->view('templates/footer');
     }
 }

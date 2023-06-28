@@ -33,7 +33,6 @@
                                     </a>
                                 </div>
                                 <?= $this->session->flashdata('message'); ?>
-                                <?= $this->session->sess_destroy('message'); ?>
                             </div>
                         </div>
                     </div>

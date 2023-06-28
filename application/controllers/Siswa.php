@@ -11,7 +11,7 @@ class Siswa extends CI_Controller
 
     public function index()
     {
-        $data['title'] = 'My Profile';
+        $data['title'] = 'Pendaftaran Ekstrakurikuler';
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
 
@@ -19,6 +19,19 @@ class Siswa extends CI_Controller
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('siswa/index', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function terima_informasi()
+    {
+        $data['title'] = 'Informasi Ekstrakurikuler';
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('siswa/terima_informasi', $data);
         $this->load->view('templates/footer');
     }
 }

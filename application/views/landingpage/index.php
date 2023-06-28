@@ -421,13 +421,12 @@
                         <div class="card d-flex blur justify-content-center shadow-lg my-sm-0 my-sm-6 mt-8 mb-5">
                             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
                                 <div class="bg-gradient-primary shadow-primary border-radius-lg p-3">
-                                    <h3 class="text-white text-primary mb-0">Contact us</h3>
+                                    <h3 class="text-white text-primary mb-0">Formulir Pendaftaran Ekstrakurikuler</h3>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <p class="pb-3">
-                                    For further questions, including partnership opportunities, please email hello@creative-tim.com
-                                    or contact using our contact form.
+                                    Lengkapi Identitasmu Disini!
                                 </p>
                                 <form id="contact-form" method="post" autocomplete="off">
                                     <div class="card-body p-0 my-3">
@@ -442,15 +441,30 @@
                                                     <input type="email" class="form-control" placeholder="hello@creative-tim.com">
                                                 </div>
                                             </div>
+
+                                            <div class="form-group col-md-6 ps-md-2">
+                                                <select class="form-control" name="kategori_ekskul_id" id="kategori_ekskul_id">
+                                                    <option value="">Kelas</option>
+                                                    <option value=""></option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group col-md-6 ps-md-2">
+                                                <select class="form-control" name="kategori_ekskul_id" id="kategori_ekskul_id">
+                                                    <option value="">Ekskul</option>
+                                                    <option value=""></option>
+                                                </select>
+                                            </div>
+
                                         </div>
                                         <div class="form-group mb-0 mt-md-0 mt-4">
                                             <div class="input-group input-group-static mb-4">
-                                                <textarea name="message" class="form-control" id="message" rows="6" placeholder="Describe your problem in at least 250 characters"></textarea>
+                                                <textarea name="message" class="form-control" id="message" rows="6" placeholder="Jelaskan alasan kamu, kenapa mau bergabung ekstrakurikuler tersebut! maksimal 250 karakter"></textarea>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-12 text-center">
-                                                <button type="submit" class="btn bg-gradient-primary mt-3 mb-0">Send Message</button>
+                                                <button type="submit" class="btn bg-gradient-primary mt-3 mb-0">DAFTAR</button>
                                             </div>
                                         </div>
                                     </div>

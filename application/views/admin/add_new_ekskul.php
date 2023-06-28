@@ -1,7 +1,5 @@
 <div class="container-fluid py-4">
     <p class="h4"><?= $title; ?></p>
-    <?= form_error('ekskul', '<div class="alert alert-danger text-white font-weight-bold" role="alert">', '</div>'); ?>
-    <?= $this->session->flashdata('message'); ?>
 
     <button type="button" class="btn bg-gradient-primary" data-bs-toggle="modal" data-bs-target="#newMenuModal"><?= $title ?></button>
     <div class="card">
@@ -35,7 +33,7 @@
                             </td>
                             <td>
                                 <div class="author align-items-center">
-                                    <img src="<?= base_url('assets/img/') . $e['logo_ekskul'] ?>" alt="..." class="avatar shadow">
+                                    <img src="<?= base_url('assets/img/logo_ekskul/') . $e['logo_ekskul'] ?>" alt="..." class="avatar shadow">
                                     <div class="name ps-3">
                             </td>
 
@@ -64,34 +62,34 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('admin/add_new_ekskul'); ?>" method="post">
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="nama_ekskul" name="nama_ekskul" placeholder="Nama Ekstrakurikuler">
-                            </div>
+            <?= form_open_multipart('admin/add_new_ekskul'); ?>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="nama_ekskul" name="nama_ekskul" placeholder="Nama Ekstrakurikuler">
+                        </div>
 
-                            <div class="form-group">
-                                <select class="form-control" name="kategori_ekskul_id" id="kategori_ekskul_id">
-                                    <option value="">Select Menu</option>
-                                    <?php foreach ($kategori as $k) : ?>
-                                        <option value="<?= $k['id_kategori']; ?>"><?= $k['nama_kategori']; ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
+                        <div class="form-group">
+                            <select class="form-control" name="kategori_ekskul_id" id="kategori_ekskul_id">
+                                <option value="">Select Menu</option>
+                                <?php foreach ($kategori as $k) : ?>
+                                    <option value="<?= $k['id_kategori']; ?>"><?= $k['nama_kategori']; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
 
-                            <div class="form-group">
-                                <input type="file" class="form-control" id="logo_ekskul" name="logo_ekskul" placeholder="Logo Ekstrakurikuler">
-                            </div>
+                        <div class="form-group">
+                            <input type="file" class="form-control" name="logo_ekskul" placeholder="Logo Ekstrakurikuler">
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn bg-gradient-primary">Save Change</button>
-                </div>
-            </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn bg-gradient-primary">Save Change</button>
+            </div>
+            <?= form_close() ?>
 
         </div>
     </div>
