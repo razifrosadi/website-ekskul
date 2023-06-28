@@ -46,42 +46,20 @@ class Admin extends CI_Controller
             $this->load->view('admin/add_new_ekskul', $data);
             $this->load->view('templates/footer');
         } else {
-            $ekskulData = [
+            $data = [
                 'nama_ekskul' => $this->input->post('nama_ekskul'),
                 'kategori_ekskul_id' => $this->input->post('kategori_ekskul_id'),
-                'ketua_id' => $this->input->post('ketua_id'),
-                // 'logo_ekskul' => $this->input->post('logo_ekskul'),
-
+                'logo_ekskul' => $this->input->post('logo_ekskul')
             ];
-            $upload_img = $_FILES['logo_ekskul']['name'];
 
-            // var_dump($upload_img);
-            // die;
 
-            if ($upload_img) {
-                $config['upload_path'] = './assets/img/logo_ekskul/';
-                $config['allowed_types'] = 'gif|jpg|JPG|png|ico|jpeg';
-                $config['max_size']     = '2048';
-
-                $this->load->library('upload', $config);
-                if ($this->upload->do_upload('logo_ekskul')) {
-                    $old_img = $data['ekskul']['logo_ekskul'];
-                    if ($old_img != 'default_mobil.jpg') {
-                        unlink(FCPATH . 'assets/img/logo_ekskul/' . $old_img);
-                    }
-                    $new_img = $this->upload->data('file_name');
-                    $this->db->set('logo_ekskul', $new_img);
-                    $this->db->insert('ekskul', $ekskulData);
-                } else {
-                    echo $this->upload->display_errors();
-                };
-                $this->db->insert('ekskul', $ekskulData);
-                $this->session->set_flashdata('message', '<div class="alert alert-success text-white font-weight-bold" role="alert">
+            $this->db->insert('ekskul', $data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success text-white font-weight-bold" role="alert">
 			New Extracurriculars added!</div>');
-                redirect('admin/add_new_ekskul');
-            }
+            redirect('admin/add_new_ekskul');
         }
     }
+
 
     public function registrasi_ketua()
     {

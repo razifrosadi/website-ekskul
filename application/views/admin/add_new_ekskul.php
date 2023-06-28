@@ -64,7 +64,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('admin/add_new_ekskul'); ?>" method="post" enctype="multipart/form-data">
+            <form action="<?= base_url('admin/add_new_ekskul'); ?>" method="post">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
