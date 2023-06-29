@@ -120,11 +120,52 @@ class Admin extends CI_Controller
         $data['title'] = 'Berita';
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
+        $data['berita'] = $this->db->get('berita')->result_array();
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('admin/berita', $data);
-        $this->load->view('templates/footer');
+        $this->form_validation->set_rules('judul_berita', 'Judul', 'required');
+        $this->form_validation->set_rules('deskripsi_berita', 'Deskripsi', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('admin/berita', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $judul = $this->input->post('judul_berita');
+            $deskripsi = $this->input->post('deskripsi_berita');
+            $tanggal = $this->input->post('tanggal_berita');
+            $upload_img = $_FILES['image_berita']['name'];
+
+            // var_dump($upload_img);
+            // die;
+
+            if ($upload_img) {
+                $config['upload_path']      = './assets/img/logo_ekskul/';
+                $config['allowed_types']    = 'jpg|png|jpeg';
+                $config['max_size']         = '2048';
+
+                $this->load->library('upload', $config);
+                if (!$this->upload->do_upload('image_berita')) {
+                    echo "Upload gagal";
+                    die();
+                } else {
+                    $upload_img = $this->upload->data('file_name');
+                    $this->db->set('image_berita', $upload_img);
+                }
+            }
+
+            // Mengubah format tanggal ke format datetime
+            $tanggal_obj = new DateTime($tanggal);
+            $tanggal_db = $tanggal_obj->format('Y-m-d H:i:s');
+
+            $this->db->set('judul_berita', $judul);
+            $this->db->set('deskripsi_berita', $deskripsi);
+            $this->db->set('tanggal_berita', $tanggal_db);
+            $this->db->insert('berita');
+            $this->session->set_flashdata('message', '<div class="alert alert-success text-white font-weight-bold" role="alert">
+        New Berita added!</div>');
+            redirect('admin/berita');
+        }
     }
 }

@@ -16,36 +16,40 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            <div class="d-flex px-2 py-1">
-                                <div class="d-flex flex-column justify-content-center">
-                                    <h6 class="mb-0 text-xs">1</h6>
+                    <?php $i = 1; ?>
+                    <?php foreach ($berita as $b) : ?>
+                        <tr>
+                            <td>
+                                <div class="d-flex px-2 py-1">
+                                    <div class="d-flex flex-column justify-content-center">
+                                        <h6 class="mb-0 text-xs"><?= $i; ?></h6>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                        <td>
-                            <p class="text-xs font-weight-bold mb-0">Judul Berita</p>
-                        </td>
-                        <td>
-                            <p class="text-xs font-weight-bold mb-0">Deskripsi Berita</p>
-                        </td>
-                        <td>
-                            <p class="text-xs font-weight-bold mb-0">Tanggal Berita</p>
-                        </td>
-                        <td>
-                            <div class="author align-items-center">
-                                <img src="" alt="..." class="avatar shadow">
-                                <div class="name ps-3">
-                        </td>
+                            </td>
+                            <td>
+                                <p class="text-xs font-weight-bold mb-0"><?= $b['judul_berita']; ?></p>
+                            </td>
+                            <td>
+                                <p class="text-xs font-weight-bold mb-0"><?= $b['deskripsi_berita']; ?></p>
+                            </td>
+                            <td>
+                                <p class="text-xs font-weight-bold mb-0"><?= $b['tanggal_berita']; ?></p>
+                            </td>
+                            <td>
+                                <div class="author align-items-center">
+                                    <img src="<?= base_url('assets/img/logo_ekskul/') . $b['image_berita'] ?>" alt="..." class="avatar shadow">
+                                    <div class="name ps-3">
+                            </td>
 
-                        <td class="align-middle text-center text-sm">
-                            <span class="badge badge-sm badge-success">
-                                <a href="" class="badge bg-gradient-success">edit</a>
-                                <a href="" class="badge bg-gradient-danger">delete</a>
-                            </span>
-                        </td>
-                    </tr>
+                            <td class="align-middle text-center text-sm">
+                                <span class="badge badge-sm badge-success">
+                                    <a href="" class="badge bg-gradient-success">edit</a>
+                                    <a href="" class="badge bg-gradient-danger">delete</a>
+                                </span>
+                            </td>
+                        </tr>
+                        <?php $i++; ?>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
@@ -62,31 +66,31 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('admin/berita'); ?>" method="post">
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="judul_berita" name="judul_berita" placeholder="Judul Berita">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="deskripsi_berita" name="deskripsi_berita" placeholder="Deskripsi Berita">
-                            </div>
-                            <div class="input-group input-group-static my-3">
-                                <input type="datetime-local" class="form-control">
-                            </div>
+            <?= form_open_multipart('admin/berita'); ?>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="judul_berita" name="judul_berita" placeholder="Judul Berita">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="deskripsi_berita" name="deskripsi_berita" placeholder="Deskripsi Berita">
+                        </div>
+                        <div class="input-group input-group-static my-3">
+                            <input type="datetime-local" class="form-control">
+                        </div>
 
-                            <div class="form-group">
-                                <input type="file" class="form-control" id="image_berita" name="image_berita" placeholder="Tambah Gambar">
-                            </div>
+                        <div class="form-group">
+                            <input type="file" class="form-control" id="image_berita" name="image_berita" placeholder="Tambah Gambar">
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn bg-gradient-primary">Save Change</button>
-                </div>
-            </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn bg-gradient-primary">Save Change</button>
+            </div>
+            <?= form_close() ?>
 
         </div>
     </div>
