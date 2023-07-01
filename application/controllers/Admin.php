@@ -7,6 +7,7 @@ class Admin extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Ekskul_model', 'ekskul');
+        $this->load->model('Berita_model', 'berita');
         $this->load->library('form_validation');
         is_logged_in();
     }
@@ -36,8 +37,6 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('nama_ekskul', 'Ekskul', 'required');
         $this->form_validation->set_rules('kategori_ekskul_id', 'Kategori', 'required');
 
-        // var_dump($data['ekskul']);
-        // die;
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
@@ -48,9 +47,6 @@ class Admin extends CI_Controller
             $nama = $this->input->post('nama_ekskul');
             $kategori = $this->input->post('kategori_ekskul_id');
             $upload_img = $_FILES['logo_ekskul']['name'];
-
-            // var_dump($upload_img);
-            // die;
 
             if ($upload_img) {
                 $config['upload_path']      = './assets/img/logo_ekskul/';
@@ -71,9 +67,68 @@ class Admin extends CI_Controller
             $this->db->set('kategori_ekskul_id', $kategori);
             $this->db->insert('ekskul');
             $this->session->set_flashdata('message', '<div class="alert alert-success text-white font-weight-bold" role="alert">
-			New Extracurriculars added!</div>');
+            New Extracurriculars added!</div>');
             redirect('admin/add_new_ekskul');
         }
+    }
+
+    function edit_ekskul($id)
+    {
+        $where = array('ekskul_id' => $id);
+        $data['title'] = 'Edit Ekskul';
+        $data['ekskul'] = $this->ekskul->edit_data($where, 'ekskul')->result_array();
+        $data['kategori'] = $this->ekskul->getAllKategori();
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('admin/edit_ekskul', $data);
+        $this->load->view('templates/footer');
+    }
+
+
+
+    function update()
+    {
+        $id = $this->input->post('ekskul_id');
+        $data['ekskul_row'] = $this->ekskul->getEkskulRow($id);
+
+        $nama = $this->input->post('nama_ekskul');
+        $kategori = $this->input->post('kategori_ekskul_id');
+
+        $upload_img = $_FILES['logo_ekskul']['name'];
+
+        if ($upload_img) {
+            $config['upload_path']      = './assets/img/logo_ekskul';
+            $config['allowed_types']    = 'jpg|png|jpeg';
+            $config['max_size']         = '2048';
+
+            $this->load->library('upload', $config);
+            if (!$this->upload->do_upload('logo_ekskul')) {
+                echo "Upload gagal";
+                die();
+            } else {
+                $upload_img = $this->upload->data('file_name');
+                $data['ekskul_row']['logo_ekskul'] = $upload_img; // Update nama file logo pada data ekskul_row
+            }
+        }
+
+        $data['ekskul_row']['nama_ekskul'] = $nama; // Update nama ekskul pada data ekskul_row
+        $data['ekskul_row']['kategori_ekskul_id'] = $kategori; // Update kategori ekskul pada data ekskul_row
+
+        $this->ekskul->update_data(['ekskul_id' => $id], $data['ekskul_row'], 'ekskul'); // Mengupdate data ekskul menggunakan model
+
+        redirect('admin/add_new_ekskul');
+    }
+
+
+
+    function delete($id)
+    {
+        $where = array('ekskul_id' => $id);
+        $this->ekskul->delete_data($where, 'ekskul');
+        redirect('admin/add_new_ekskul');
     }
 
 
@@ -115,6 +170,8 @@ class Admin extends CI_Controller
         }
     }
 
+
+    // CONTROLLER BERITA 
     public function berita()
     {
         $data['title'] = 'Berita';
@@ -167,5 +224,67 @@ class Admin extends CI_Controller
         New Berita added!</div>');
             redirect('admin/berita');
         }
+    }
+
+    function edit_berita($id_berita)
+    {
+        $where = array('id_berita' => $id_berita);
+        $data['title'] = 'Tambahkan Berita';
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+
+        $data['berita'] = $this->berita->edit_data($where, 'berita')->result();
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('admin/edit_berita', $data);
+        $this->load->view('templates/footer');
+    }
+
+    function update_berita()
+    {
+        $id_berita = $this->input->post('id_berita');
+        $data['berita_row'] = $this->berita->getBeritaRow($id_berita);
+
+        $judul = $this->input->post('judul_berita');
+        $deskripsi = $this->input->post('deskripsi_berita');
+        $tanggal = $this->input->post('tanggal_berita');
+
+        $upload_img = $_FILES['image_berita']['name'];
+
+        if ($upload_img) {
+            $config['upload_path']      = './assets/img/logo_ekskul';
+            $config['allowed_types']    = 'jpg|png|jpeg';
+            $config['max_size']         = '2048';
+
+            $this->load->library('upload', $config);
+            if (!$this->upload->do_upload('image_berita')) {
+                echo "Upload gagal";
+                die();
+            } else {
+                $upload_img = $this->upload->data('file_name');
+                $data['ekskul_row']['image_berita'] = $upload_img; // Update nama file logo pada data berita_row
+            }
+        }
+
+        // Mengubah format tanggal ke format datetime
+        $tanggal_obj = new DateTime($tanggal);
+        $tanggal_db = $tanggal_obj->format('Y-m-d H:i:s');
+
+        $data['berita_row']['judul_berita'] = $judul; // Update nama berita pada data berita_row
+        $data['berita_row']['deskripsi_berita'] = $deskripsi; // Update kategori berita pada data ekskul_row
+        $data['berita_row']['tanggal_berita'] = $tanggal_db; // Update
+
+        $this->berita->update_data(['id_berita' => $id_berita], $data['berita_row'], 'berita'); // Mengupdate data berita menggunakan model
+
+        redirect('admin/berita');
+    }
+
+
+    function delete_berita($id_berita)
+    {
+        $where = array('id_berita' => $id_berita);
+        $this->berita->delete_data($where, 'berita');
+        redirect('admin/berita');
     }
 }

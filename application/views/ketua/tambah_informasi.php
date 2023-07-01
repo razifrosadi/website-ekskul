@@ -1,15 +1,15 @@
 <div class="container-fluid py-4">
     <p class="h4"><?= $title; ?></p>
 
-    <button type="button" class="btn bg-gradient-primary" data-bs-toggle="modal" data-bs-target="#newBeritaModal"><?= $title ?></button>
+    <button type="button" class="btn bg-gradient-primary" data-bs-toggle="modal" data-bs-target="#newInformasiModal"><?= $title ?></button>
     <div class="card">
         <div class="table-responsive">
             <table class="table align-items-center mb-0">
                 <thead>
                     <tr>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#</th>
-                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Judul Berita</th>
-                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Deskripsi Berita</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Judul Informasi</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Deskripsi Informasi</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Tanggal</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Gambar</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
@@ -17,7 +17,7 @@
                 </thead>
                 <tbody>
                     <?php $i = 1; ?>
-                    <?php foreach ($berita as $b) : ?>
+                    <?php foreach ($informasi as $in) : ?>
                         <tr>
                             <td>
                                 <div class="d-flex px-2 py-1">
@@ -27,24 +27,24 @@
                                 </div>
                             </td>
                             <td>
-                                <p class="text-xs font-weight-bold mb-0"><?= $b['judul_berita']; ?></p>
+                                <p class="text-xs font-weight-bold mb-0"><?= $in['judul_informasi']; ?></p>
                             </td>
                             <td>
-                                <p class="text-xs font-weight-bold mb-0"><?= $b['deskripsi_berita']; ?></p>
+                                <p class="text-xs font-weight-bold mb-0"><?= $in['deskripsi_informasi']; ?></p>
                             </td>
                             <td>
-                                <p class="text-xs font-weight-bold mb-0"><?= $b['tanggal_berita']; ?></p>
+                                <p class="text-xs font-weight-bold mb-0"><?= $in['tanggal_informasi']; ?></p>
                             </td>
                             <td>
                                 <div class="author align-items-center">
-                                    <img src="<?= base_url('assets/img/logo_ekskul/') . $b['image_berita'] ?>" alt="..." class="avatar shadow">
+                                    <img src="<?= base_url('assets/img/logo_ekskul/') . $in['image_informasi'] ?>" alt="..." class="avatar shadow">
                                     <div class="name ps-3">
                             </td>
 
                             <td class="align-middle text-center text-sm">
                                 <span class="badge badge-sm badge-success">
-                                    <a href="<?= base_url('admin/edit_berita/' . $b['id_berita']) ?>" class="badge bg-gradient-success">edit</a>
-                                    <a href="<?= base_url('admin/delete_berita/' . $b['id_berita']) ?>" class="badge bg-gradient-danger">delete</a>
+                                    <a href="" class="badge bg-gradient-success">edit</a>
+                                    <a href="" class="badge bg-gradient-danger">delete</a>
                                 </span>
                             </td>
                         </tr>
@@ -57,31 +57,31 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="newBeritaModal" tabindex="-1" role="dialog" aria-labelledby="newBeritaModalLabel" aria-hidden="true">
+<div class="modal fade" id="newInformasiModal" tabindex="-1" role="dialog" aria-labelledby="newInformasiModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="newBeritaModalLabel">Tambahkan Berita</h5>
+                <h5 class="modal-title" id="newInformasiModalLabel">Tambahkan Informasi</h5>
                 <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <?= form_open_multipart('admin/berita'); ?>
+            <?= form_open_multipart('ketua/tambah_informasi'); ?>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="judul_berita" name="judul_berita" placeholder="Judul Berita">
+                            <input type="text" class="form-control" id="judul_informasi" name="judul_informasi" placeholder="Judul Informasi">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="deskripsi_berita" name="deskripsi_berita" placeholder="Deskripsi Berita">
+                            <input type="text" class="form-control" id="deskripsi_informasi" name="deskripsi_informasi" placeholder="Deskripsi Informasi">
                         </div>
                         <div class="input-group input-group-static my-3">
                             <input type="datetime-local" class="form-control">
                         </div>
 
                         <div class="form-group">
-                            <input type="file" class="form-control" id="image_berita" name="image_berita" placeholder="Tambah Gambar">
+                            <input type="file" class="form-control" id="image_informasi" name="image_informasi" placeholder="Tambah Gambar">
                         </div>
                     </div>
                 </div>
