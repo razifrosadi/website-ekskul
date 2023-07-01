@@ -6,6 +6,7 @@ class Siswa extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('Tambah_Informasi_model', 'tambah_informasi');
         is_logged_in();
     }
 
@@ -27,6 +28,7 @@ class Siswa extends CI_Controller
         $data['title'] = 'Informasi Ekstrakurikuler';
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
+        $data['informasi'] = $this->tambah_informasi->getTambah_informasiData(); // Mengambil data berita dari model
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
