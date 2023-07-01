@@ -43,8 +43,8 @@
 
                             <td class="align-middle text-center text-sm">
                                 <span class="badge badge-sm badge-success">
-                                    <a href="" class="badge bg-gradient-success">edit</a>
-                                    <a href="" class="badge bg-gradient-danger">delete</a>
+                                    <a href="<?= base_url('ketua/edit_tambah_informasi/' . $in['id_informasi']) ?>" class="badge bg-gradient-success">edit</a>
+                                    <a href="<?= base_url('ketua/delete_tambah_informasi/' . $in['id_informasi']) ?>" class="badge bg-gradient-danger">delete</a>
                                 </span>
                             </td>
                         </tr>

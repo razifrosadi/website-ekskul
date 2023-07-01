@@ -68,97 +68,35 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-3 col-sm-6">
-                    <div class="card card-plain">
-                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                            <a class="d-block blur-shadow-image">
-                                <img src="https://demos.creative-tim.com/test/material-dashboard-pro/assets/img/products/product-1-min.jpg" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg">
-                            </a>
-                            <div class="colored-shadow" style="background-image: url(&quot;https://demos.creative-tim.com/test/material-dashboard-pro/assets/img/products/product-1-min.jpg&quot;);"></div>
-                        </div>
-                        <div class="card-body px-0">
-                            <h5>
-                                <a href="javascript:;" class="text-dark font-weight-bold">MateLabs machine learning</a>
-                            </h5>
-                            <p>
-                                If you’ve ever wanted to train a machine learning model
-                                and integrate it with IFTTT, you now can with ...
-                            </p>
-                            <a href="javascript:;" class="text-primary icon-move-right">Read More
-                                <i class="fas fa-arrow-right text-xs ms-1"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="card card-plain">
-                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                            <a class="d-block blur-shadow-image">
-                                <img src="https://demos.creative-tim.com/test/material-dashboard-pro/assets/img/products/product-1-min.jpg" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg">
-                            </a>
-                            <div class="colored-shadow" style="background-image: url(&quot;https://demos.creative-tim.com/test/material-dashboard-pro/assets/img/products/product-1-min.jpg&quot;);"></div>
-                        </div>
-                        <div class="card-body px-0">
-                            <h5>
-                                <a href="javascript:;" class="text-dark font-weight-bold">MateLabs machine learning</a>
-                            </h5>
-                            <p>
-                                If you’ve ever wanted to train a machine learning model
-                                and integrate it with IFTTT, you now can with ...
-                            </p>
-                            <a href="javascript:;" class="text-primary icon-move-right">Read More
-                                <i class="fas fa-arrow-right text-xs ms-1"></i>
-                            </a>
+                <?php foreach ($berita as $b) : ?>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card card-plain">
+                            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                                <a class="d-block blur-shadow-image">
+                                    <img src="<?= base_url('assets/img/logo_ekskul/') . $b['image_berita']; ?>" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg">
+                                </a>
+                                <div class="colored-shadow" style="background-image: url(&quot;https://demos.creative-tim.com/test/material-dashboard-pro/assets/img/products/product-1-min.jpg&quot;);"></div>
+                            </div>
+                            <div class="card-body px-0">
+                                <h5>
+                                    <a href="javascript:;" class="text-dark font-weight-bold"><?= $b['judul_berita']; ?></a>
+                                </h5>
+                                <p>
+                                    <?= $b['deskripsi_berita']; ?>
+                                </p>
+                                <a href="javascript:;" class="text-primary icon-move-right">Read More
+                                    <i class="fas fa-arrow-right text-xs ms-1"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="card card-plain">
-                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                            <a class="d-block blur-shadow-image">
-                                <img src="https://demos.creative-tim.com/test/material-dashboard-pro/assets/img/products/product-1-min.jpg" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg">
-                            </a>
-                            <div class="colored-shadow" style="background-image: url(&quot;https://demos.creative-tim.com/test/material-dashboard-pro/assets/img/products/product-1-min.jpg&quot;);"></div>
-                        </div>
-                        <div class="card-body px-0">
-                            <h5>
-                                <a href="javascript:;" class="text-dark font-weight-bold">MateLabs machine learning</a>
-                            </h5>
-                            <p>
-                                If you’ve ever wanted to train a machine learning model
-                                and integrate it with IFTTT, you now can with ...
-                            </p>
-                            <a href="javascript:;" class="text-primary icon-move-right">Read More
-                                <i class="fas fa-arrow-right text-xs ms-1"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="card card-plain">
-                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                            <a class="d-block blur-shadow-image">
-                                <img src="https://demos.creative-tim.com/test/material-dashboard-pro/assets/img/products/product-1-min.jpg" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg">
-                            </a>
-                            <div class="colored-shadow" style="background-image: url(&quot;https://demos.creative-tim.com/test/material-dashboard-pro/assets/img/products/product-1-min.jpg&quot;);"></div>
-                        </div>
-                        <div class="card-body px-0">
-                            <h5>
-                                <a href="javascript:;" class="text-dark font-weight-bold">MateLabs machine learning</a>
-                            </h5>
-                            <p>
-                                If you’ve ever wanted to train a machine learning model
-                                and integrate it with IFTTT, you now can with ...
-                            </p>
-                            <a href="javascript:;" class="text-primary icon-move-right">Read More
-                                <i class="fas fa-arrow-right text-xs ms-1"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </section>
+
+
+
     <!-- END Blogs w/ 4 cards w/ image & text & link -->
 
     <!-- profil ekskul -->
