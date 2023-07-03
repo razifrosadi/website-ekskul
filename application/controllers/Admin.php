@@ -6,8 +6,10 @@ class Admin extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('User_model', 'user');
         $this->load->model('Ekskul_model', 'ekskul');
         $this->load->model('Berita_model', 'berita');
+        $this->load->model('Pelatih_model', 'pelatih');
         $this->load->library('form_validation');
         is_logged_in();
     }
@@ -17,12 +19,15 @@ class Admin extends CI_Controller
         $data['title'] = 'Dashboard';
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->user->getUserData();
+        $data['all_user'] = $this->user->getUserDataAll();
+
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('admin/index', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer', $data);
     }
 
 
@@ -286,5 +291,60 @@ class Admin extends CI_Controller
         $where = array('id_berita' => $id_berita);
         $this->berita->delete_data($where, 'berita');
         redirect('admin/berita');
+    }
+
+    // CONTROLLER PELATIH
+    public function pelatih()
+    {
+        $data['title'] = 'Pelatih';
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+        // $data['pelatih'] = $this->db->get('pelatih')->result_array();
+        $data['ekskul'] = $this->ekskul->getAllEkskul();
+        $data['pelatih'] = $this->pelatih->getAllPelatih();
+
+        $this->form_validation->set_rules('nama_pelatih', 'Nama Pelatih', 'required');
+        $this->form_validation->set_rules('id_ekskul', 'Ekskul', 'required');
+        $this->form_validation->set_rules('deskripsi_pelatih', 'Deskripsi', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('admin/pelatih', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $pelatih = $this->input->post('nama_pelatih');
+            $ekskulid = $this->input->post('id_ekskul');
+            $deskpelatih = $this->input->post('deskripsi_pelatih');
+            $upload_img = $_FILES['image_pelatih']['name'];
+
+            // var_dump($upload_img);
+            // die;
+
+            if ($upload_img) {
+                $config['upload_path']      = './assets/img/logo_ekskul/';
+                $config['allowed_types']    = 'jpg|png|jpeg';
+                $config['max_size']         = '2048';
+
+                $this->load->library('upload', $config);
+                if (!$this->upload->do_upload('image_pelatih')) {
+                    echo "Upload gagal";
+                    die();
+                } else {
+                    $upload_img = $this->upload->data('file_name');
+                    $this->db->set('image_pelatih', $upload_img);
+                }
+            }
+
+
+            $this->db->set('nama_pelatih', $pelatih);
+            $this->db->set('id_ekskul', $ekskulid);
+            $this->db->set('deskripsi_pelatih', $deskpelatih);
+            $this->db->insert('pelatih');
+            $this->session->set_flashdata('message', '<div class="alert alert-success text-white font-weight-bold" role="alert">
+        Tambahkan Pelatih Baru!</div>');
+            redirect('admin/pelatih');
+        }
     }
 }

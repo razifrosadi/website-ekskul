@@ -22,13 +22,13 @@
                                 <div class="d-flex px-2 py-1">
                                     <div class="d-flex flex-column justify-content-center">
                                         <h6 class="mb-0 text-xs"><?= $i; ?></h6>
-                                        <p class="text-xs text-secondary mb-0">john@creative-tim.com</p>
+                                        <p class="text-xs text-secondary mb-0"></p>
                                     </div>
                                 </div>
                             </td>
                             <td>
                                 <p class="text-xs font-weight-bold mb-0"><?= $m['menu']; ?></p>
-                                <p class="text-xs text-secondary mb-0">Organization</p>
+                                <p class="text-xs text-secondary mb-0"></p>
                             </td>
                             <td class="align-middle text-center text-sm">
                                 <span class="badge badge-sm badge-success">

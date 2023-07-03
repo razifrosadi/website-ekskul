@@ -8,12 +8,18 @@ class Landingpage extends CI_Controller
         parent::__construct();
         $this->load->model('Ekskul_model', 'ekskul');
         $this->load->model('Berita_model', 'berita');
+        $this->load->model('Pelatih_model', 'pelatih');
     }
 
     public function index()
     {
 
+        $data['title'] = 'Landing Page';
         $data['berita'] = $this->berita->getBeritaData(); // Mengambil data berita dari model
+        $data['kategori'] = $this->ekskul->getAllKategori();
+        $data['ekskul'] = $this->ekskul->getAllEkskul();
+        $data['pelatih'] = $this->pelatih->getAllPelatih();
+        // $data['pelatih'] = $this->db->get('pelatih')->result_array();
 
         $this->load->view('templates/header');
         // $this->load->view('templates/sidebar', $data);
