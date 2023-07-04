@@ -11,19 +11,16 @@ class Siswa extends CI_Controller
         is_logged_in();
     }
 
-    public function index()
+    public function daftar()
     {
         $data['title'] = 'Pendaftaran Ekstrakurikuler';
-        $data['user'] = $this->db->get_where('user', ['email' =>
-        $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['siswa'] = $this->siswa->getAllSiswa();
         $data['kelas'] = $this->siswa->getAllKelas();
         $data['ekskul'] = $this->siswa->getAllEkskul();
 
-        $this->form_validation->set_rules('nama_lengkap', 'Nama', 'required');
+        $this->form_validation->set_rules('nama_lengkap', 'Nama Lengkap', 'required');
         $this->form_validation->set_rules('no_wa', 'Whatsapp', 'required');
-        $this->form_validation->set_rules('kelas_id', 'Kelas', 'required');
-        $this->form_validation->set_rules('ekskul_id', 'Ekskul', 'required');
         $this->form_validation->set_rules('alasan', 'Alasan', 'required');
 
         if ($this->form_validation->run() == false) {
@@ -39,7 +36,6 @@ class Siswa extends CI_Controller
             $ekskul = $this->input->post('ekskul_id');
             $alasan = $this->input->post('alasan');
 
-
             $this->db->set('nama_lengkap', $nama);
             $this->db->set('no_wa', $wa);
             $this->db->set('kelas_id', $kelas);
@@ -48,7 +44,7 @@ class Siswa extends CI_Controller
             $this->db->insert('siswa');
             $this->session->set_flashdata('message', '<div class="alert alert-success text-white font-weight-bold" role="alert">
             Terimakasih sudah mendaftar!</div>');
-            redirect('siswa');
+            redirect('siswa/daftar');
         }
     }
 
