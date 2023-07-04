@@ -296,7 +296,7 @@ class Admin extends CI_Controller
     // CONTROLLER PELATIH
     public function pelatih()
     {
-        $data['title'] = 'Pelatih';
+        $data['title'] = 'Tambahkan Pelatih';
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
         // $data['pelatih'] = $this->db->get('pelatih')->result_array();
@@ -346,5 +346,63 @@ class Admin extends CI_Controller
         Tambahkan Pelatih Baru!</div>');
             redirect('admin/pelatih');
         }
+    }
+    function edit_pelatih($id_pelatih)
+    {
+        $where = array('id_pelatih' => $id_pelatih);
+        $data['title'] = 'Tambahkan Pelatih';
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+
+        $data['pelatih'] = $this->pelatih->edit_data($where, 'pelatih')->result();
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('admin/edit_pelatih', $data);
+        $this->load->view('templates/footer');
+    }
+
+    function update_pelatih()
+    {
+        $id_pelatih = $this->input->post('id_pelatih');
+        $data['pelatih_row'] = $this->pelatih->getPelatihRow($id_pelatih);
+
+        $pelatih = $this->input->post('nama_pelatih');
+        $ekskulid = $this->input->post('id_ekskul');
+        $deskpelatih = $this->input->post('deskripsi_pelatih');
+
+        $upload_img = $_FILES['image_pelatih']['name'];
+
+        if ($upload_img) {
+            $config['upload_path']      = './assets/img/logo_ekskul';
+            $config['allowed_types']    = 'jpg|png|jpeg';
+            $config['max_size']         = '2048';
+
+            $this->load->library('upload', $config);
+            if (!$this->upload->do_upload('image_pelatih')) {
+                echo "Upload gagal";
+                die();
+            } else {
+                $upload_img = $this->upload->data('file_name');
+                $data['pelatih_row']['image_pelatih'] = $upload_img; // Update nama file logo pada data pelatih_row
+            }
+        }
+
+
+        $data['pelatih_row']['nama_pelatih'] = $pelatih; // Update nama pelatih pada data pelatih_row
+        $data['pelatih_row']['id_ekskul'] = $ekskulid; // Update nama pelatih pada data pelatih_row
+        $data['pelatih_row']['deskripsi_pelatih'] = $deskpelatih; // Update kategori pelatih pada data ekskul_row
+
+
+        $this->pelatih->update_data(['id_pelatih' => $id_pelatih], $data['pelatih_row'], 'pelatih'); // Mengupdate data pelatih menggunakan model
+
+        redirect('admin/pelatih');
+    }
+
+    function delete_pelatih($id_pelatih)
+    {
+        $where = array('id_pelatih' => $id_pelatih);
+        $this->pelatih->delete_data($where, 'pelatih');
+        redirect('admin/pelatih');
     }
 }
