@@ -139,39 +139,41 @@ class Admin extends CI_Controller
 
     public function registrasi_ketua()
     {
-        $this->form_validation->set_rules('name', 'Name', 'required|trim');
-        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]');
-        $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[6]|matches[password2]', [
-            'matches' => 'Password does not match!',
-            'min_length' => 'Password too short!'
-        ]);
-        $this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password1]');
+        $data['title'] = 'Registrasi Akun Ketua';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['ekskul'] = $this->ekskul->getAllEkskul();
+        $data['userAll'] = $this->user->getUserDataAll();
 
+        $this->form_validation->set_rules('ekskul', 'Ekskul', 'required');
+        $this->form_validation->set_rules('ketua', 'Ketua', 'required');
 
         if ($this->form_validation->run() == FALSE) {
-            $data['title'] = 'Registrasi Akun Ketua';
-            $data['user'] = $this->db->get_where('user', ['email' =>
-            $this->session->userdata('email')])->row_array();
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
             $this->load->view('admin/registrasi_ketua', $data);
             $this->load->view('templates/footer');
         } else {
-            $data = [
-                'name' => htmlspecialchars($this->input->post('name', true)),
-                'email' => htmlspecialchars($this->input->post('email', true)),
-                'image' => 'default.jpg',
-                'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
-                'role_id' => 3,
-                'is_active' => 1,
-                'date_created' => time()
-            ];
+            $ekskul = $this->input->post('ekskul');
+            $ketua = $this->input->post('ketua');
 
-            $this->db->insert('user', $data);
-            $this->session->set_flashdata('message', '<div class="alert alert-success text-white font-weight-bold" role="alert">
-			Congratulations! youre account registered. Please log in now!</div>');
-            redirect('admin');
+            $this->db->set('ketua_id', $ketua);
+            $this->db->where('ekskul_id', $ekskul);
+            $this->db->update('ekskul');
+
+            $this->db->set('role_id', 3);
+            $this->db->where('id', $ketua);
+            $this->db->update('user');
+
+            $this->session->set_flashdata('message', '
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Berhasil</strong> registrasi akun ketua
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>');
+
+            redirect('admin/registrasi_ketua');
         }
     }
 
