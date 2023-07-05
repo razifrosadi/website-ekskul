@@ -17,15 +17,14 @@
                                         <div class="my-auto">
                                             <img src="./assets/img/team-2.jpg" class="avatar avatar-sm  me-3 ">
                                         </div>
-                                        <div class="d-flex flex-column justify-content-center">
-                                            <h6 class="text-sm font-weight-normal mb-1">
-                                                <span class="font-weight-bold">Selamat! Anda diterima di Ekstrakurikuler Basket!</span> dari Ketua Ekstrakurikuler Basket
-                                            </h6>
-                                            <p class="text-xs text-secondary mb-0 ">
-                                                <i class="fa fa-clock me-1"></i>
-                                                13 minutes ago
-                                            </p>
-                                        </div>
+                                        <?php foreach ($siswatolak as $st) : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h6 class="text-sm font-weight-normal mb-1">
+                                                    <span class="font-weight-bold">Mohon Maaf! </span> <?= $st['nama_lengkap']; ?> Anda <?= $st['status']; ?> di Ekstrakurikuler <b><?= $st['nama_ekskul'] ?></b>
+                                                </h6>
+
+                                            </div>
+                                        <?php endforeach; ?>
                                     </div>
                                 </a>
                             </li>

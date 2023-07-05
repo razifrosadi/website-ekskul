@@ -15,9 +15,14 @@ class Siswa extends CI_Controller
     {
         $data['title'] = 'Pendaftaran Ekstrakurikuler';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        // var_dump($data['user']);
+        // die();
         $data['siswa'] = $this->siswa->getAllSiswa();
         $data['kelas'] = $this->siswa->getAllKelas();
         $data['ekskul'] = $this->siswa->getAllEkskul();
+        $data['siswatolak'] = $this->siswa->getSiswaDitolak($data['user']['id']);
+        // var_dump($data['siswatolak']);
+        // die();
 
         $this->form_validation->set_rules('nama_lengkap', 'Nama Lengkap', 'required');
         $this->form_validation->set_rules('no_wa', 'Whatsapp', 'required');

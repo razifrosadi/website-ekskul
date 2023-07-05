@@ -16,7 +16,10 @@ class Ketua extends CI_Controller
         $data['title'] = 'Data Anggota Ekstrakurikuler';
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
-        $data['siswa'] = $this->siswa->getAllSiswa();
+        // $data['siswa'] = $this->siswa->getAllSiswa();
+        $data['siswa'] = $this->siswa->getAllSiswaByEkskul($data['user']['id']);
+        // var_dump($data['siswa']);
+        // die();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -140,5 +143,34 @@ class Ketua extends CI_Controller
         $where = array('id_informasi' => $id_informasi);
         $this->tambah_informasi->delete_data($where, 'tambah_informasi');
         redirect('ketua/tambah_informasi');
+    }
+
+    public function anggota()
+    {
+        $data['title'] = 'Anggota';
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+        $data['siswa'] = $this->siswa->getAllSiswaByEkskul($data['user']['id']);
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('ketua/anggota', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function diterima($id)
+    {
+        var_dump($id);
+    }
+    public function ditolak($id)
+    {
+        $data['siswa']['status'] = 'Ditolak';
+        $this->siswa->update_data(['id_siswa' => $id], $data['siswa'], 'siswa'); // Mengupdate data berita menggunakan model
+
+        // redirect('ketua');
+        // $where = array('id_siswa' => $id);
+        // $this->siswa->update_data($where, 'siswa', ['status' => 'Ditolak']);
+        redirect('ketua');
     }
 }
