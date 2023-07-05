@@ -7,6 +7,7 @@ class Ketua extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Tambah_informasi_model', 'tambah_informasi');
+        $this->load->model('Siswa_model', 'siswa');
         is_logged_in();
     }
 
@@ -15,6 +16,7 @@ class Ketua extends CI_Controller
         $data['title'] = 'Data Anggota Ekstrakurikuler';
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
+        $data['siswa'] = $this->siswa->getAllSiswa();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);

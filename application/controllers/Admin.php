@@ -407,4 +407,7 @@ class Admin extends CI_Controller
         $this->pelatih->delete_data($where, 'pelatih');
         redirect('admin/pelatih');
     }
+
+    // pilih ketua
+
 }
