@@ -19,12 +19,43 @@ class Landingpage extends CI_Controller
         $data['kategori'] = $this->ekskul->getAllKategori();
         $data['ekskul'] = $this->ekskul->getAllEkskul();
         $data['pelatih'] = $this->pelatih->getAllPelatih();
+
         // $data['pelatih'] = $this->db->get('pelatih')->result_array();
 
         $this->load->view('templates/header');
         // $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/landingpage_topbar');
         $this->load->view('landingpage/index', $data);
+        $this->load->view('templates/landingpage_footer');
+    }
+
+    public function detail_ekskul($id)
+    {
+        $data['title'] = 'Detail Ekstrakurikuler';
+        $data['kategori'] = $this->ekskul->getAllKategoriById($id);
+        // var_dump($data['kategori']);
+        // die();
+        $data['ekskul'] = $this->ekskul->getAllEkskul();
+
+
+        $this->load->view('templates/header');
+        // $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/landingpage_topbar');
+        $this->load->view('landingpage/detail_ekskul', $data);
+        $this->load->view('templates/landingpage_footer');
+    }
+
+    public function detail_berita($id)
+    {
+        $data['title'] = 'Detail Ekstrakurikuler';
+        $data['berita'] = $this->berita->getAllBeritaById($id);
+        // var_dump($data['berita']);
+        // die();
+
+        $this->load->view('templates/header');
+        // $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/landingpage_topbar');
+        $this->load->view('landingpage/detail_berita', $data);
         $this->load->view('templates/landingpage_footer');
     }
 }

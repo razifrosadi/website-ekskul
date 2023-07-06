@@ -18,6 +18,15 @@ class Berita_model extends CI_Model
         return $this->db->get_where('berita', ['id_berita !=' => 1])->result_array();
     }
 
+    public function getAllBeritaById($id)
+    {
+        $this->db->select('*');
+        $this->db->from('berita');
+        $this->db->where('id_berita', $id);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     function input_data($data, $table)
     {
         $this->db->insert($table, $data);

@@ -13,9 +13,10 @@ class Tambah_informasi_model extends CI_Model
         $queryTambah_informasi = "SELECT * FROM tambah_informasi  WHERE id_informasi = $id_informasi AND is_active = 1";
         return $this->db->query($queryTambah_informasi)->result_array();
     }
-    public function getTambah_informasiDataAll()
+    public function getTambah_informasiDataAll($id)
     {
-        return $this->db->get_where('tambah_informasi', ['id_informasi !=' => 1])->result_array();
+        $query = "SELECT * FROM tambah_informasi JOIN ekskul ON tambah_informasi.ekskul_id = ekskul.ekskul_id JOIN siswa ON ekskul.ekskul_id = siswa.ekskul_id WHERE siswa.user_id = $id";
+        return $this->db->query($query)->result_array();
     }
 
     function input_data($data, $table)

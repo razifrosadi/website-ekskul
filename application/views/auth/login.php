@@ -1,7 +1,7 @@
 <!-- Navbar Transparent -->
 <nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3  navbar-transparent ">
     <div class="container">
-        <a class="navbar-brand  text-white " href="<?= base_url('landingpage'); ?>" rel="tooltip" title="Designed and Coded by Creative Tim" data-placement="bottom" target="_blank">
+        <a class="navbar-brand  text-white " href="landingpage" rel="tooltip" title="Designed and Coded by Creative Tim" data-placement="bottom" target="_blank">
             Website Ekstrakurikuler
         </a>
     </div>

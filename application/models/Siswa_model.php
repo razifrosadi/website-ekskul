@@ -25,6 +25,17 @@ class Siswa_model extends CI_Model
         return $this->db->query($query)->result_array();
     }
 
+    public function getAllSiswaByRegister($id)
+    {
+        // $this->db->select('*');
+        // $this->db->from('siswa');
+        // $this->db->join('ekskul', 'siswa.ekskul_id = ekskul.ekskul_id');
+        // $this->db->where('user', )
+
+        $query = "SELECT * FROM siswa JOIN ekskul ON siswa.ekskul_id = ekskul.ekskul_id JOIN user ON ekskul.ketua_id = user.id JOIN kelas ON siswa.kelas_id = kelas.id_kelas WHERE user.id = $id AND siswa.status = 'Pending'";
+        return $this->db->query($query)->result_array();
+    }
+
     public function getSiswaDitolak($id)
     {
         $this->db->select('*');
@@ -32,6 +43,16 @@ class Siswa_model extends CI_Model
         $this->db->join('ekskul', 'siswa.ekskul_id = ekskul.ekskul_id');
         $this->db->where('user_id', $id);
         $this->db->where('status', 'Ditolak');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+    public function getSiswaDiterima($id)
+    {
+        $this->db->select('*');
+        $this->db->from('siswa');
+        $this->db->join('ekskul', 'siswa.ekskul_id = ekskul.ekskul_id');
+        $this->db->where('user_id', $id);
+        $this->db->where('status', 'Diterima');
         $query = $this->db->get();
         return $query->result_array();
     }

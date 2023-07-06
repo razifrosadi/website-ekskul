@@ -14,13 +14,21 @@
                             <li class="mb-2">
                                 <a class="dropdown-item border-radius-md" href="javascript:;">
                                     <div class="d-flex py-1">
-                                        <div class="my-auto">
-                                            <img src="./assets/img/team-2.jpg" class="avatar avatar-sm  me-3 ">
-                                        </div>
+
                                         <?php foreach ($siswatolak as $st) : ?>
                                             <div class="d-flex flex-column justify-content-center">
                                                 <h6 class="text-sm font-weight-normal mb-1">
                                                     <span class="font-weight-bold">Mohon Maaf! </span> <?= $st['nama_lengkap']; ?> Anda <?= $st['status']; ?> di Ekstrakurikuler <b><?= $st['nama_ekskul'] ?></b>
+                                                </h6>
+
+                                            </div>
+                                        <?php endforeach; ?>
+                                    </div>
+                                    <div class="d-flex py-1">
+                                        <?php foreach ($siswaterima as $stm) : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h6 class="text-sm font-weight-normal mb-1">
+                                                    <span class="font-weight-bold">Selamat! </span> <?= $stm['nama_lengkap']; ?> Anda <?= $stm['status']; ?> di Ekstrakurikuler <b><?= $stm['nama_ekskul'] ?></b>
                                                 </h6>
 
                                             </div>

@@ -8,6 +8,7 @@ class Ketua extends CI_Controller
         parent::__construct();
         $this->load->model('Tambah_informasi_model', 'tambah_informasi');
         $this->load->model('Siswa_model', 'siswa');
+        $this->load->model('Ekskul_model', 'ekskul');
         is_logged_in();
     }
 
@@ -17,7 +18,7 @@ class Ketua extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
         // $data['siswa'] = $this->siswa->getAllSiswa();
-        $data['siswa'] = $this->siswa->getAllSiswaByEkskul($data['user']['id']);
+        $data['siswa'] = $this->siswa->getAllSiswaByRegister($data['user']['id']);
         // var_dump($data['siswa']);
         // die();
 
@@ -33,6 +34,8 @@ class Ketua extends CI_Controller
         $data['title'] = 'Tambah Informasi';
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
+
+        $data['ekskul'] = $this->ekskul->getEkskulByKetuaId($data['user']['id']);
 
         $data['informasi'] = $this->db->get('tambah_informasi')->result_array();
 
@@ -76,6 +79,7 @@ class Ketua extends CI_Controller
             $this->db->set('judul_informasi', $judul);
             $this->db->set('deskripsi_informasi', $deskripsi);
             $this->db->set('tanggal_informasi', $tanggal_db);
+            $this->db->set('ekskul_id', $data['ekskul']['ekskul_id']);
             $this->db->insert('tambah_informasi');
             $this->session->set_flashdata('message', '<div class="alert alert-success text-white font-weight-bold" role="alert">
         New informasi added!</div>');
@@ -161,7 +165,9 @@ class Ketua extends CI_Controller
 
     public function diterima($id)
     {
-        var_dump($id);
+        $data['siswa']['status'] = 'Diterima';
+        $this->siswa->update_data(['id_siswa' => $id], $data['siswa'], 'siswa'); // Mengupdate data berita menggunakan model
+        redirect('ketua');
     }
     public function ditolak($id)
     {

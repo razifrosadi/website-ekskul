@@ -12,6 +12,17 @@ class Ekskul_model extends CI_Model
         return $query->result_array();
     }
 
+    function getEkskulByKategori($id)
+    {
+        $this->db->select('*');
+        $this->db->from('ekskul');
+        $this->db->where('kategori_ekskul_id', $id);
+        $this->db->join('kategori_ekskul', 'kategori_ekskul.id_kategori = ekskul.ekskul_id');
+
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
 
     public function getAllKategori()
     {
@@ -20,11 +31,25 @@ class Ekskul_model extends CI_Model
         $query = $this->db->get();
         return $query->result_array();
     }
+    public function getAllKategoriById($id)
+    {
+        $this->db->select('*');
+        $this->db->from('kategori_ekskul');
+        $this->db->where('id_kategori', $id);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 
     public function getEkskulData()
     {
         $query = $this->db->get('ekskul');
         return $query->result_array();
+    }
+
+    public function getEkskulByKetuaId($id)
+    {
+        $query = $this->db->get_where('ekskul', ['ketua_id' => $id]);
+        return $query->row_array();
     }
 
     public function getEkskulDataById($id)

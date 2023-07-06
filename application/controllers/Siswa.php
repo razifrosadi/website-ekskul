@@ -20,7 +20,10 @@ class Siswa extends CI_Controller
         $data['siswa'] = $this->siswa->getAllSiswa();
         $data['kelas'] = $this->siswa->getAllKelas();
         $data['ekskul'] = $this->siswa->getAllEkskul();
+        // var_dump($data['ekskul']);
+        // die();
         $data['siswatolak'] = $this->siswa->getSiswaDitolak($data['user']['id']);
+        $data['siswaterima'] = $this->siswa->getSiswaDiterima($data['user']['id']);
         // var_dump($data['siswatolak']);
         // die();
 
@@ -37,15 +40,20 @@ class Siswa extends CI_Controller
         } else {
             $nama = $this->input->post('nama_lengkap');
             $wa = $this->input->post('no_wa');
-            $kelas = $this->input->post('kelas_id');
-            $ekskul = $this->input->post('ekskul_id');
+            $kelas = $this->input->post('kelas');
+            $ekskul = $this->input->post('ekskul');
             $alasan = $this->input->post('alasan');
+
+            // var_dump($kelas, $ekskul, $nama, $alasan);
+            // die();
 
             $this->db->set('nama_lengkap', $nama);
             $this->db->set('no_wa', $wa);
             $this->db->set('kelas_id', $kelas);
             $this->db->set('ekskul_id', $ekskul);
             $this->db->set('alasan', $alasan);
+            $this->db->set('status', 'Pending');
+            $this->db->set('user_id', $data['user']['id']);
             $this->db->insert('siswa');
             $this->session->set_flashdata('message', '<div class="alert alert-success text-white font-weight-bold" role="alert">
             Terimakasih sudah mendaftar!</div>');
@@ -58,7 +66,9 @@ class Siswa extends CI_Controller
         $data['title'] = 'Informasi Ekstrakurikuler';
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
-        $data['informasi'] = $this->tambah_informasi->getTambah_informasiData(); // Mengambil data berita dari model
+        $data['informasi'] = $this->tambah_informasi->getTambah_informasiDataAll($data['user']['id']);
+        // var_dump($data['informasi']);
+        // die(); // Mengambil data berita dari model
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);

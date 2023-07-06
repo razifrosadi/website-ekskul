@@ -85,7 +85,7 @@
                                 <p>
                                     <?= $b['deskripsi_berita']; ?>
                                 </p>
-                                <a href="javascript:;" class="text-primary icon-move-right">Read More
+                                <a href="<?= base_url('landingpage/detail_berita/') . $b['id_berita'] ?>" class="text-primary icon-move-right">Read More
                                     <i class="fas fa-arrow-right text-xs ms-1"></i>
                                 </a>
                             </div>
@@ -119,11 +119,17 @@
                                 <h5 class="font-weight-normal">
                                     <a href="javascript:;">Ekstrakurikuler <?= $k['nama_kategori']; ?></a>
                                 </h5>
-                                <p class="mb-0">
-                                    Website visitors today demand a frictionless user expericence — especially when using search. Because of the hight standards.
-                                </p>
+                                <?php foreach ($ekskul as $e) : ?>
+                                    <?php if ($e['kategori_ekskul_id'] == $k['id_kategori']) { ?>
+
+                                        <p class="mb-0">
+                                            <?= $e['nama_ekskul']; ?>
+                                        </p>
+                                    <?php } ?>
+                                <?php endforeach; ?>
+
                                 <div class="d-flex justify-content-end align-items-center">
-                                    <a href="javascript:;" class="text-primary icon-move-right">Let's start
+                                    <a href="<?= base_url('landingpage/detail_ekskul/') . $k['id_kategori'] ?>" class="text-primary icon-move-right">Let's start
                                         <i class="fas fa-arrow-right text-xs ms-1"></i>
                                     </a>
                                 </div>
