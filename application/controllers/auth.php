@@ -48,17 +48,17 @@ class Auth extends CI_Controller
 					}
 				} else {
 					$this->session->set_flashdata('message', '<div class="alert alert-danger text-white font-weight-bold" role="alert">
-			Wrong password!</div>');
+			Kata sandi salah!</div>');
 					redirect('auth');
 				}
 			} else {
 				$this->session->set_flashdata('message', '<div class="alert alert-danger text-white font-weight-bold" role="alert">
-			This accont has not been created!</div>');
+			Akun ini belum diregistrasi!</div>');
 				redirect('auth');
 			}
 		} else {
 			$this->session->set_flashdata('message', '<div class="alert alert-danger text-white font-weight-bold" role="alert">
-			Account is not Registered!</div>');
+			Akun tidak teregistrasi!</div>');
 			redirect('auth');
 		}
 	}
@@ -68,8 +68,8 @@ class Auth extends CI_Controller
 		$this->form_validation->set_rules('name', 'Name', 'required|trim');
 		$this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]');
 		$this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[6]|matches[password2]', [
-			'matches' => 'Password does not match!',
-			'min_length' => 'Password too short!'
+			'matches' => 'Kata sandi harus sama!',
+			'min_length' => 'Kata sandi terlalu pendek!'
 		]);
 		$this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password1]');
 
@@ -92,7 +92,7 @@ class Auth extends CI_Controller
 
 			$this->db->insert('user', $data);
 			$this->session->set_flashdata('message', '<div class="alert alert-success text-white font-weight-bold" role="alert">
-			Congratulations! youre account registered. Please log in now!</div>');
+			Selamat! Akun kamu sudah diregistrasi, Masuk sekarang!</div>');
 			redirect('auth');
 		}
 	}
@@ -104,7 +104,7 @@ class Auth extends CI_Controller
 		$this->session->unset_userdata('role_id');
 
 		$this->session->set_flashdata('message', '<div class="alert alert-success text-white font-weight-bold" role="alert">
-			You have been logged out!</div>');
+			Anda telah keluar!</div>');
 		redirect('auth');
 	}
 

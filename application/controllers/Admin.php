@@ -33,7 +33,7 @@ class Admin extends CI_Controller
 
     public function add_new_ekskul()
     {
-        $data['title'] = 'Add New Ekskul';
+        $data['title'] = 'Tambah Ekstrakurikuler';
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
         $data['ekskul'] = $this->ekskul->getAllEkskul();
@@ -298,7 +298,7 @@ class Admin extends CI_Controller
     // CONTROLLER PELATIH
     public function pelatih()
     {
-        $data['title'] = 'Tambahkan Pelatih';
+        $data['title'] = 'Pelatih';
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
         // $data['pelatih'] = $this->db->get('pelatih')->result_array();

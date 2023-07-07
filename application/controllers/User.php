@@ -11,7 +11,7 @@ class User extends CI_Controller
 
     public function index()
     {
-        $data['title'] = 'My Profile';
+        $data['title'] = 'Profil Saya';
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
 
@@ -23,7 +23,7 @@ class User extends CI_Controller
     }
     public function edit()
     {
-        $data['title'] = 'Edit Profile';
+        $data['title'] = 'Edit Profil';
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
 

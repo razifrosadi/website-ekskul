@@ -15,7 +15,7 @@
                 <div class="card z-index-0 fadeIn3 fadeInBottom">
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                         <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                            <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Sign in</h4>
+                            <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Masuk!</h4>
                             <div class="row mt-3">
                                 <div class="col-2 text-center ms-auto">
                                     <a class="btn btn-link px-3" href="javascript:;">
@@ -39,23 +39,23 @@
                     <div class="card-body">
                         <form role="form" class="text-start" method="post" action="<?= base_url('auth'); ?>">
                             <div class="input-group input-group-outline my-3">
-                                <input type="text" class="form-control" id="email" name="email" placeholder="Email Address" value="<?= set_value('email'); ?>">
+                                <input type="text" class="form-control" id="email" name="email" placeholder="Alamat Email" value="<?= set_value('email'); ?>">
                             </div>
                             <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
                             <div class="input-group input-group-outline mb-3">
-                                <input type="password" class="form-control" id="password" name="password" placeholder="Repeat Password">
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Kata Sandi">
                             </div>
                             <?= form_error('password', '<small class="text-danger pl-3">', '</small>'); ?>
                             <div class="form-check form-switch d-flex align-items-center mb-3">
                                 <input class="form-check-input" type="checkbox" id="rememberMe" checked>
-                                <label class="form-check-label mb-0 ms-3" for="rememberMe">Remember me</label>
+                                <label class="form-check-label mb-0 ms-3" for="rememberMe">Selau ingat aku</label>
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Sign in</button>
+                                <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Masuk</button>
                             </div>
                             <div class="text-center">
                                 <a class="mt-4 text-sm text-center" href="<?= base_url(); ?>auth/registration">
-                                    Don't have an account?
+                                    Belum punya akun?
                                 </a>
                             </div>
                         </form>

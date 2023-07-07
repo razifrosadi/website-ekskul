@@ -32,8 +32,8 @@
                             </td>
                             <td class="align-middle text-center text-sm">
                                 <span class="badge badge-sm badge-success">
-                                    <a href="" class="badge bg-gradient-success">edit</a>
-                                    <a href="" class="badge bg-gradient-danger">delete</a>
+                                    <a href="<?= base_url('menu/editmenu/' . $m['id']); ?>" class="badge bg-gradient-success">edit</a>
+                                    <a href="<?= base_url('menu/deletemenu/' . $m['id']); ?>" class="badge bg-gradient-danger">delete</a>
                                 </span>
                             </td>
                         </tr>

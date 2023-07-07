@@ -23,12 +23,7 @@
     <link rel="icon" type="image/png" href="<?= base_url('assets/'); ?>img/favicon.png">
 
     <title>
-
-
-
-        Material Kit 2 by Creative Tim
-
-
+        <?= $title; ?>
     </title>
 
 

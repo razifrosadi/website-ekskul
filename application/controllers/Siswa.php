@@ -24,8 +24,10 @@ class Siswa extends CI_Controller
         // die();
         $data['siswatolak'] = $this->siswa->getSiswaDitolak($data['user']['id']);
         $data['siswaterima'] = $this->siswa->getSiswaDiterima($data['user']['id']);
+        $data['showSpecialContent'] = true;
         // var_dump($data['siswatolak']);
         // die();
+
 
         $this->form_validation->set_rules('nama_lengkap', 'Nama Lengkap', 'required');
         $this->form_validation->set_rules('no_wa', 'Whatsapp', 'required');

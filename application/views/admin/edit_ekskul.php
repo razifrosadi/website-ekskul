@@ -19,15 +19,28 @@
                             </select>
                         </div>
 
-                        <div class="form-group">
-                            <input type="file" class="form-control" name="logo_ekskul">
+                        <div class="form-group row">
+                            <div class="col-sm-2">Picture</div>
+                            <div class="col-sm-10">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <img src="<?= base_url('assets/img/logo_ekskul/') . $e['logo_ekskul']; ?>" class="img-thumbnail">
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <div class="form-group">
+                                            <input type="file" name="logo_ekskul" id="logo_ekskul" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
+
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn bg-gradient-primary">Save Change</button>
+                <button type="submit" class="btn bg-gradient-primary">Simpan Perubahan</button>
             </div>
             <?= form_close() ?>
         <?php } ?>

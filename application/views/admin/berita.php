@@ -1,7 +1,7 @@
 <div class="container-fluid py-4">
     <p class="h4"><?= $title; ?></p>
 
-    <button type="button" class="btn bg-gradient-primary" data-bs-toggle="modal" data-bs-target="#newBeritaModal"><?= $title ?></button>
+    <button type="button" class="btn bg-gradient-primary" data-bs-toggle="modal" data-bs-target="#newBeritaModal">Tambah Berita</button>
     <div class="card">
         <div class="table-responsive">
             <table class="table align-items-center mb-0">
@@ -88,7 +88,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn bg-gradient-primary">Save Change</button>
+                <button type="submit" class="btn bg-gradient-primary">Simpan</button>
             </div>
             <?= form_close() ?>
 

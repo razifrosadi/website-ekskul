@@ -1,5 +1,5 @@
 <header class="header-2">
-    <div class="page-header min-vh-75 relative" style="background-image: url('<?= base_url('assets/'); ?>img/curved-images/curved0.jpg')">
+    <div class="page-header min-vh-75 relative" style="background-image: url('<?= base_url('assets/'); ?>img/curved-images/curved1.jpg')">
         <span class="mask bg-gradient-primary opacity-4"></span>
         <div class="container">
             <div class="row">
@@ -112,7 +112,7 @@
                             <!-- Konten card -->
                             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                                 <a class="d-block blur-shadow-image">
-                                    <img src="https://images.unsplash.com/photo-1544717302-de2939b7ef71?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="img-colored-shadow" class="img-fluid border-radius-lg">
+                                    <img src="<?= base_url('assets/'); ?>img/ilustrasi.png" alt="img-colored-shadow" class="img-fluid border-radius-lg">
                                 </a>
                             </div>
                             <div class="card-body text-center">
@@ -121,10 +121,7 @@
                                 </h5>
                                 <?php foreach ($ekskul as $e) : ?>
                                     <?php if ($e['kategori_ekskul_id'] == $k['id_kategori']) { ?>
-
-                                        <p class="mb-0">
-                                            <?= $e['nama_ekskul']; ?>
-                                        </p>
+                                        <?= $e['nama_ekskul'], ','; ?>
                                     <?php } ?>
                                 <?php endforeach; ?>
 
@@ -151,7 +148,6 @@
             <div class="row">
                 <div class="col-md-8 text-start mb-5 mt-5">
                     <h3 class="text-white z-index-1 position-relative">Pelatih Ekstrakurikuler</h3>
-                    <p class="text-white opacity-8 mb-0">There’s nothing I really wanted to do in life that I wasn’t able to get good at. That’s my skill.</p>
                 </div>
             </div>
             <div class="row">
@@ -161,7 +157,6 @@
                             <div class="row">
                                 <div class="col-lg-4 col-md-6 col-12 mt-n5">
                                     <a href="javascript:;">
-
                                         <div class="blur-shadow-avatar" style="margin-left: 20px; margin-top: 20px;">
                                             <img class="avatar avatar-xxl shadow-lg" src="<?= base_url('assets/img/logo_ekskul/') . $p['image_pelatih'] ?>">
                                         </div>

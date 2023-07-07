@@ -216,10 +216,29 @@
         Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
 </script>
+
 <!-- Github buttons -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="<?= base_url('assets/'); ?>js/soft-ui-dashboard.min.js?v=1.0.7"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const iconNavbarSidenav = document.getElementById("iconNavbarSidenav");
+        const iconSidenav = document.getElementById("iconSidenav");
+
+        // Toggling sidebar on button click
+        iconNavbarSidenav.addEventListener("click", function() {
+            document.body.classList.toggle("g-sidenav-pinned");
+            document.body.classList.toggle("g-sidenav-hidden");
+        });
+
+        // Toggling sidebar on icon click
+        iconSidenav.addEventListener("click", function() {
+            document.body.classList.toggle("g-sidenav-show");
+        });
+    });
+</script>
+
 
 <!-- Github buttons -->
 </body>

@@ -22,7 +22,7 @@ class Landingpage extends CI_Controller
 
         // $data['pelatih'] = $this->db->get('pelatih')->result_array();
 
-        $this->load->view('templates/header');
+        $this->load->view('templates/header', $data);
         // $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/landingpage_topbar');
         $this->load->view('landingpage/index', $data);
@@ -38,7 +38,7 @@ class Landingpage extends CI_Controller
         $data['ekskul'] = $this->ekskul->getAllEkskul();
 
 
-        $this->load->view('templates/header');
+        $this->load->view('templates/header', $data);
         // $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/landingpage_topbar');
         $this->load->view('landingpage/detail_ekskul', $data);
@@ -52,7 +52,7 @@ class Landingpage extends CI_Controller
         // var_dump($data['berita']);
         // die();
 
-        $this->load->view('templates/header');
+        $this->load->view('templates/header', $data);
         // $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/landingpage_topbar');
         $this->load->view('landingpage/detail_berita', $data);

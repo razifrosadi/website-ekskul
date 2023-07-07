@@ -11,31 +11,34 @@
                             <i class="fa fa-bell cursor-pointer"></i>
                         </a>
                         <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
-                            <li class="mb-2">
-                                <a class="dropdown-item border-radius-md" href="javascript:;">
-                                    <div class="d-flex py-1">
 
-                                        <?php foreach ($siswatolak as $st) : ?>
-                                            <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="text-sm font-weight-normal mb-1">
-                                                    <span class="font-weight-bold">Mohon Maaf! </span> <?= $st['nama_lengkap']; ?> Anda <?= $st['status']; ?> di Ekstrakurikuler <b><?= $st['nama_ekskul'] ?></b>
-                                                </h6>
+                            <?php if ($showSpecialContent) : ?>
+                                <li class="mb-2">
+                                    <a class="dropdown-item border-radius-md" href="javascript:;">
+                                        <div class="d-flex py-1">
 
-                                            </div>
-                                        <?php endforeach; ?>
-                                    </div>
-                                    <div class="d-flex py-1">
-                                        <?php foreach ($siswaterima as $stm) : ?>
-                                            <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="text-sm font-weight-normal mb-1">
-                                                    <span class="font-weight-bold">Selamat! </span> <?= $stm['nama_lengkap']; ?> Anda <?= $stm['status']; ?> di Ekstrakurikuler <b><?= $stm['nama_ekskul'] ?></b>
-                                                </h6>
+                                            <?php foreach ($siswatolak as $st) : ?>
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="text-sm font-weight-normal mb-1">
+                                                        <span class="font-weight-bold">Mohon Maaf! </span> <?= $st['nama_lengkap']; ?> Anda <?= $st['status']; ?> di Ekstrakurikuler <b><?= $st['nama_ekskul'] ?></b>
+                                                    </h6>
 
-                                            </div>
-                                        <?php endforeach; ?>
-                                    </div>
-                                </a>
-                            </li>
+                                                </div>
+                                            <?php endforeach; ?>
+                                        </div>
+                                        <div class="d-flex py-1">
+                                            <?php foreach ($siswaterima as $stm) : ?>
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="text-sm font-weight-normal mb-1">
+                                                        <span class="font-weight-bold">Selamat! </span> <?= $stm['nama_lengkap']; ?> Anda <?= $stm['status']; ?> di Ekstrakurikuler <b><?= $stm['nama_ekskul'] ?></b>
+                                                    </h6>
+
+                                                </div>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    </a>
+                                </li>
+                            <?php endif; ?>
 
                         </ul>
                     </li>
@@ -65,17 +68,17 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Apakah anda yakin mau keluar?</h5>
                     <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    ...
+                    Klik tombol keluar di bawah jika anda yakin!
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
-                    <a href="<?= base_url('auth/logout'); ?>" class="btn bg-gradient-primary">Logout</a>
+                    <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Batal</button>
+                    <a href="<?= base_url('auth/logout'); ?>" class="btn bg-gradient-primary">Keluar</a>
                 </div>
             </div>
         </div>

@@ -15,7 +15,7 @@
                 <div class="card z-index-0 fadeIn3 fadeInBottom">
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                         <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                            <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Registration</h4>
+                            <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Registrasi Akun </h4>
                             <div class="row mt-3">
                                 <div class="col-2 text-center ms-auto">
                                     <a class="btn btn-link px-3" href="javascript:;">
@@ -43,28 +43,24 @@
                             <?= form_error('name', '<small class="text-danger pl-3">', '</small>'); ?>
 
                             <div class="input-group input-group-outline my-3">
-                                <input type="text" class="form-control" id="email" name="email" placeholder="Email Address" value="<?= set_value('email'); ?>">
+                                <input type="text" class="form-control" id="email" name="email" placeholder="Alamat Email" value="<?= set_value('email'); ?>">
                             </div>
                             <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
 
                             <div class="input-group input-group-outline mb-3">
-                                <input type="password" class="form-control" id="password1" name="password1" placeholder="Password">
+                                <input type="password" class="form-control" id="password1" name="password1" placeholder="Kata Sandi">
                             </div>
                             <?= form_error('password1', '<small class="text-danger pl-3">', '</small>'); ?>
 
                             <div class="input-group input-group-outline mb-3">
-                                <input type="password" class="form-control" id="password2" name="password2" placeholder="Repeat Password">
-                            </div>
-                            <div class="form-check form-switch d-flex align-items-center mb-3">
-                                <input class="form-check-input" type="checkbox" id="rememberMe" checked>
-                                <label class="form-check-label mb-0 ms-3" for="rememberMe">Remember me</label>
+                                <input type="password" class="form-control" id="password2" name="password2" placeholder="Ulangi Kata Sandi">
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Registration</button>
+                                <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Registrasi</button>
                             </div>
                             <div class="text-center">
                                 <a class="mt-4 text-sm text-center" href="<?= base_url(); ?>auth">
-                                    Already have an account? Login!
+                                    Sudah punya akun? Masuk!
                                 </a>
                             </div>
                         </form>

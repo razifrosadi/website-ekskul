@@ -1,7 +1,7 @@
 <div class="container-fluid py-4">
     <p class="h4"><?= $title; ?></p>
 
-    <button type="button" class="btn bg-gradient-primary" data-bs-toggle="modal" data-bs-target="#newPelatihModal"><?= $title ?></button>
+    <button type="button" class="btn bg-gradient-primary" data-bs-toggle="modal" data-bs-target="#newPelatihModal">Tambahkan Pelatih</button>
     <div class="card">
         <div class="table-responsive">
             <table class="table align-items-center mb-0">
