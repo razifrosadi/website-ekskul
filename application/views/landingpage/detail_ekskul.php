@@ -13,34 +13,33 @@
 </header>
 
 <div class="card card-body shadow-xl mx-3 mx-md-4 mt-n6">
-
     <section class="py-5">
         <div class="container">
             <div class="row">
-
-
-                <!-- Konten card -->
-                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                    <?php foreach ($kategori as $k) : ?>
-                        <a class="d-block blur-shadow-image">
-                            <?php foreach ($ekskul as $e) : ?>
-                                <?php if ($e['kategori_ekskul_id'] == $k['id_kategori']) { ?>
-                                    <img src="<?= base_url('assets/img/logo_ekskul/') . $e['logo_ekskul'] ?>" alt="img-colored-shadow" class="img-fluid border-radius-lg">
-                                <?php } ?>
-                            <?php endforeach; ?>
-                        </a>
-
-                        <?php foreach ($ekskul as $e) : ?>
-                            <?php if ($e['kategori_ekskul_id'] == $k['id_kategori']) { ?>
-                                <h5 class="font-weight-normal">
-                                    <?= $e['nama_ekskul']; ?>
-                                </h5>
-                            <?php } ?>
-                        <?php endforeach; ?>
-
+                <?php $count = 0; ?>
+                <?php foreach ($kategori as $k) : ?>
+                    <?php foreach ($ekskul as $e) : ?>
+                        <?php if ($e['kategori_ekskul_id'] == $k['id_kategori']) { ?>
+                            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        <a class="d-block blur-shadow-image">
+                                            <img src="<?= base_url('assets/img/logo_ekskul/') . $e['logo_ekskul'] ?>" alt="img-colored-shadow" class="img-fluid border-radius-lg">
+                                        </a>
+                                        <h5 class="font-weight-normal mt-3">
+                                            <?= $e['nama_ekskul']; ?>
+                                        </h5>
+                                        <h5 class="font-weight-normal mt-3">
+                                            <?= $e['jadwal_latihan']; ?>
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php $count++; ?>
+                        <?php } ?>
                     <?php endforeach; ?>
-                </div>
-
+                <?php endforeach; ?>
             </div>
         </div>
     </section>
+</div>

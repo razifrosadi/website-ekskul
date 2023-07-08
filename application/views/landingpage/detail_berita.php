@@ -32,6 +32,9 @@
                                 <h5>
                                     <a href="javascript:;" class="text-dark font-weight-bold"><?= $b['judul_berita']; ?></a>
                                 </h5>
+                                <h6>
+                                    <a href="javascript:;" class="text-dark font-weight-bold"><?= $b['tanggal_berita']; ?></a>
+                                </h6>
                                 <p>
                                     <?= $b['deskripsi_berita']; ?>
                                 </p>

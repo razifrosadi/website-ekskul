@@ -178,9 +178,10 @@
     </section>
     <!-- -------- END Features w/ pattern background & stats & rocket -------- -->
 
+
     <!-- -------- START HEADER 8 w/ card over right bg image ------- -->
     <section>
-        <div class="page-header min-vh-100">
+        <div class="page-header min-vh-150">
             <div class="container">
                 <div class="row">
                     <div class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 start-0 text-center justify-content-center flex-column">

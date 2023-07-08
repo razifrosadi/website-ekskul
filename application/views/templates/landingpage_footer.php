@@ -6,7 +6,7 @@
                     <a href="https://www.creative-tim.com/product/material-kit">
                         <img src="<?= base_url('assets/'); ?>img/favicon.png" class="mb-3 footer-logo" alt="main_logo">
                     </a>
-                    <h6 class="font-weight-bolder mb-4">Material Kit 2</h6>
+                    <h6 class="font-weight-bolder mb-4">Website Ekstrakurikuler</h6>
                 </div>
                 <div>
                     <ul class="d-flex flex-row ms-n3 nav">

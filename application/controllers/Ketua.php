@@ -37,7 +37,7 @@ class Ketua extends CI_Controller
 
         $data['ekskul'] = $this->ekskul->getEkskulByKetuaId($data['user']['id']);
 
-        $data['informasi'] = $this->db->get('tambah_informasi')->result_array();
+        $data['informasi'] = $this->tambah_informasi->getTambah_informasiDataAll($data['ekskul']['ekskul_id']);
 
         $this->form_validation->set_rules('judul_informasi', 'Judul', 'required');
         $this->form_validation->set_rules('deskripsi_informasi', 'Deskripsi', 'required');
