@@ -24,22 +24,36 @@
                         <div class="card card-plain">
                             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                                 <a class="d-block blur-shadow-image">
-                                    <img src="<?= base_url('assets/img/logo_ekskul/') . $b['image_berita']; ?>" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg">
+                                    <img src="<?= base_url('assets/img/gambar_berita/') . $b['image_berita']; ?>" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg">
                                 </a>
                                 <div class="colored-shadow" style="background-image: url(&quot;https://demos.creative-tim.com/test/material-dashboard-pro/assets/img/products/product-1-min.jpg&quot;);"></div>
                             </div>
-                            <div class="card-body px-0">
-                                <h5>
-                                    <a href="javascript:;" class="text-dark font-weight-bold"><?= $b['judul_berita']; ?></a>
-                                </h5>
-                                <h6>
-                                    <a href="javascript:;" class="text-dark font-weight-bold"><?= $b['tanggal_berita']; ?></a>
-                                </h6>
-                                <p>
-                                    <?= $b['deskripsi_berita']; ?>
-                                </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card card-plain">
+                            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                                <?php if (isset($b['image_berita2']) && $b['image_berita2'] != '') : ?>
+                                    <a class="d-block blur-shadow-image">
+                                        <img src="<?= base_url('assets/img/gambar_berita/') . $b['image_berita2']; ?>" class="img-fluid shadow border-radius-lg">
+                                    </a>
+                                <?php endif; ?>
                             </div>
                         </div>
+                    </div>
+                    <div class="mt-6">
+                        <h5>
+                            <a href="javascript:;" class="text-dark font-weight-bold"><?= $b['judul_berita']; ?></a>
+                        </h5>
+                        <h6>
+                            <a href="javascript:;" class="text-dark font-weight-bold"><?= $b['tanggal_berita']; ?></a>
+                        </h6>
+                        <p>
+                            <?= $b['deskripsi_berita']; ?>
+                        </p>
+                        <h7>
+                            <?= $b['keterangan_berita']; ?>
+                        </h7>
                     </div>
                 <?php endforeach; ?>
             </div>

@@ -10,7 +10,9 @@
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Judul Berita</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Deskripsi Berita</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Keterangan Berita</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Tanggal</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Gambar</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Gambar</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                     </tr>
@@ -33,13 +35,44 @@
                                 <p class="text-xs font-weight-bold mb-0"><?= $b['deskripsi_berita']; ?></p>
                             </td>
                             <td>
+                                <p class="text-xs font-weight-bold mb-0">
+                                    <?php
+                                    $keterangan_berita = $b['keterangan_berita'];
+                                    $words = explode(' ', $keterangan_berita);
+
+                                    $new_keterangan_berita = '';
+                                    for ($j = 0; $j < count($words); $j++) {
+                                        $new_keterangan_berita .= $words[$j];
+                                        if (($j + 1) % 10 == 0) {
+                                            $new_keterangan_berita .= '<br>';
+                                        } else {
+                                            $new_keterangan_berita .= ' ';
+                                        }
+                                    }
+
+                                    echo $new_keterangan_berita;
+                                    ?>
+                                </p>
+                            </td>
+                            <td>
                                 <p class="text-xs font-weight-bold mb-0"><?= $b['tanggal_berita']; ?></p>
                             </td>
                             <td>
                                 <div class="author align-items-center">
-                                    <img src="<?= base_url('assets/img/logo_ekskul/') . $b['image_berita'] ?>" alt="..." class="avatar shadow">
+                                    <img src="<?= base_url('assets/img/gambar_berita/') . $b['image_berita'] ?>" alt="..." class="avatar shadow">
                                     <div class="name ps-3">
+                                    </div>
                             </td>
+                            <td>
+                                <?php if (isset($b['image_berita2']) && $b['image_berita2'] != '') : ?>
+                                    <div class="author align-items-center">
+                                        <img src="<?= base_url('assets/img/gambar_berita/') . $b['image_berita2'] ?>" alt="..." class="avatar shadow">
+                                        <div class="name ps-3">
+                                        </div>
+                                    </div>
+                                <?php endif; ?>
+                            </td>
+
 
                             <td class="align-middle text-center text-sm">
                                 <span class="badge badge-sm badge-success">
@@ -51,6 +84,7 @@
                         <?php $i++; ?>
                     <?php endforeach; ?>
                 </tbody>
+
             </table>
         </div>
     </div>
@@ -79,10 +113,19 @@
                         <div class="input-group input-group-static my-3">
                             <input type="datetime-local" class="form-control">
                         </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Keterangan Berita</label>
+                            <textarea class="form-control" name="keterangan_berita" id="keterangan_berita" rows="3"></textarea>
+                        </div>
 
                         <div class="form-group">
                             <input type="file" class="form-control" id="image_berita" name="image_berita" placeholder="Tambah Gambar">
                         </div>
+
+                        <div class="form-group">
+                            <input type="file" class="form-control" id="image_berita2" name="image_berita2" placeholder="Tambah Gambar">
+                        </div>
+
                     </div>
                 </div>
             </div>

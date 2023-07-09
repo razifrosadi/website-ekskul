@@ -188,6 +188,7 @@ class Admin extends CI_Controller
 
         $this->form_validation->set_rules('judul_berita', 'Judul', 'required');
         $this->form_validation->set_rules('deskripsi_berita', 'Deskripsi', 'required');
+        $this->form_validation->set_rules('keterangan_berita', 'Keterangan', 'required');
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/header', $data);
@@ -199,13 +200,14 @@ class Admin extends CI_Controller
             $judul = $this->input->post('judul_berita');
             $deskripsi = $this->input->post('deskripsi_berita');
             $tanggal = $this->input->post('tanggal_berita');
+            $keterangan = $this->input->post('keterangan_berita');
             $upload_img = $_FILES['image_berita']['name'];
 
             // var_dump($upload_img);
             // die;
 
             if ($upload_img) {
-                $config['upload_path']      = './assets/img/logo_ekskul/';
+                $config['upload_path']      = './assets/img/gambar_berita/';
                 $config['allowed_types']    = 'jpg|png|jpeg';
                 $config['max_size']         = '2048';
 
@@ -219,16 +221,37 @@ class Admin extends CI_Controller
                 }
             }
 
+            $upload_img = $_FILES['image_berita2']['name'];
+
+            // var_dump($upload_img);
+            // die;
+
+            if ($upload_img) {
+                $config['upload_path']      = './assets/img/gambar_berita/';
+                $config['allowed_types']    = 'jpg|png|jpeg';
+                $config['max_size']         = '2048';
+
+                $this->load->library('upload', $config);
+                if (!$this->upload->do_upload('image_berita2')) {
+                    echo "Upload gagal";
+                    die();
+                } else {
+                    $upload_img = $this->upload->data('file_name');
+                    $this->db->set('image_berita2', $upload_img);
+                }
+            }
+
             // Mengubah format tanggal ke format datetime
             $tanggal_obj = new DateTime($tanggal);
             $tanggal_db = $tanggal_obj->format('Y-m-d H:i:s');
 
             $this->db->set('judul_berita', $judul);
             $this->db->set('deskripsi_berita', $deskripsi);
+            $this->db->set('keterangan_berita', $keterangan);
             $this->db->set('tanggal_berita', $tanggal_db);
             $this->db->insert('berita');
             $this->session->set_flashdata('message', '<div class="alert alert-success text-white font-weight-bold" role="alert">
-        New Berita added!</div>');
+        Tambahkan berita baru!</div>');
             redirect('admin/berita');
         }
     }
@@ -255,12 +278,13 @@ class Admin extends CI_Controller
 
         $judul = $this->input->post('judul_berita');
         $deskripsi = $this->input->post('deskripsi_berita');
+        $keterangan = $this->input->post('keterangan_berita');
         $tanggal = $this->input->post('tanggal_berita');
 
         $upload_img = $_FILES['image_berita']['name'];
 
         if ($upload_img) {
-            $config['upload_path']      = './assets/img/logo_ekskul';
+            $config['upload_path']      = './assets/img/gambar_berita';
             $config['allowed_types']    = 'jpg|png|jpeg';
             $config['max_size']         = '2048';
 
@@ -273,13 +297,30 @@ class Admin extends CI_Controller
                 $data['ekskul_row']['image_berita'] = $upload_img; // Update nama file logo pada data berita_row
             }
         }
+        $upload_img = $_FILES['image_berita2']['name'];
+
+        if ($upload_img) {
+            $config['upload_path']      = './assets/img/gambar_berita';
+            $config['allowed_types']    = 'jpg|png|jpeg';
+            $config['max_size']         = '2048';
+
+            $this->load->library('upload', $config);
+            if (!$this->upload->do_upload('image_berita2')) {
+                echo "Upload gagal";
+                die();
+            } else {
+                $upload_img = $this->upload->data('file_name');
+                $data['ekskul_row']['image_berita2'] = $upload_img; // Update nama file logo pada data berita_row
+            }
+        }
 
         // Mengubah format tanggal ke format datetime
         $tanggal_obj = new DateTime($tanggal);
         $tanggal_db = $tanggal_obj->format('Y-m-d H:i:s');
 
         $data['berita_row']['judul_berita'] = $judul; // Update nama berita pada data berita_row
-        $data['berita_row']['deskripsi_berita'] = $deskripsi; // Update kategori berita pada data ekskul_row
+        $data['berita_row']['deskripsi_berita'] = $deskripsi; // Update deskripsi berita pada data ekskul_row
+        $data['berita_row']['keterangan_berita'] = $keterangan; // Update keterangan berita pada data ekskul_row
         $data['berita_row']['tanggal_berita'] = $tanggal_db; // Update
 
         $this->berita->update_data(['id_berita' => $id_berita], $data['berita_row'], 'berita'); // Mengupdate data berita menggunakan model

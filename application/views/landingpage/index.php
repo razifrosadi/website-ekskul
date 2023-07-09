@@ -22,7 +22,7 @@
                     <h3 class="mt-5 mt-lg-0">Sejarah Singkat SMAN 1 CISAAT</h3>
                     <p class="pe-5">SMA Negeri 1 Cisaat mulai berdiri tanggal 16 Juli 1979. Pada awal berdirinya proses belajar mengajar dilaksanakan di SMP Negeri Cisaat. Pada tanggal 10 Juni 1981 gedung SMA Negeri 1 Cisaat diresmikan oleh Menteri Pendidikan dan Kebudayaan Dr.Daud Yusuf, berlokasi di Jl. Veteran Km.3 Desa Cibolang Kecamatan Cisaat.
                         Seiring dengan adanya pemekaran wilayah di Kecamatan Cisaat, Kabupaten Sukabumi sejak tahun 2000 SMA Negeri 1 Cisaat termasuk ke dalam wilayah Kecamanatan Gunung Guruh Kabupaten Sukabumi. Namun nama sekolah tetap SMA Negeri 1 Cisaat</p>
-                    <a href="javascript:;" class="text-primary icon-move-right">More about us
+                    <a href="javascript:;" class="text-primary icon-move-right">Baca selengkapnya
                         <i class="fas fa-arrow-right text-sm ms-1"></i>
                     </a>
                 </div>
@@ -69,12 +69,18 @@
                 </div>
             </div>
             <div class="row">
-                <?php foreach ($berita as $b) : ?>
+                <?php
+                // Mengurutkan array berita berdasarkan tanggal (update terbaru muncul pertama)
+                usort($berita, function ($a, $b) {
+                    return strtotime($b['tanggal_berita']) - strtotime($a['tanggal_berita']);
+                });
+
+                foreach ($berita as $b) : ?>
                     <div class="col-lg-3 col-sm-6">
-                        <div class="card card-plain">
+                        <div class="card card-plain mb-6">
                             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                                 <a class="d-block blur-shadow-image">
-                                    <img src="<?= base_url('assets/img/logo_ekskul/') . $b['image_berita']; ?>" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg">
+                                    <img src="<?= base_url('assets/img/gambar_berita/') . $b['image_berita']; ?>" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg">
                                 </a>
                                 <div class="colored-shadow" style="background-image: url(&quot;https://demos.creative-tim.com/test/material-dashboard-pro/assets/img/products/product-1-min.jpg&quot;);"></div>
                             </div>
@@ -85,7 +91,7 @@
                                 <p>
                                     <?= $b['deskripsi_berita']; ?>
                                 </p>
-                                <a href="<?= base_url('landingpage/detail_berita/') . $b['id_berita'] ?>" class="text-primary icon-move-right">Read More
+                                <a href="<?= base_url('landingpage/detail_berita/') . $b['id_berita'] ?>" class="text-primary icon-move-right">Baca selengkapnya
                                     <i class="fas fa-arrow-right text-xs ms-1"></i>
                                 </a>
                             </div>
@@ -95,6 +101,7 @@
             </div>
         </div>
     </section>
+
 
 
 
@@ -126,7 +133,7 @@
                                 <?php endforeach; ?>
 
                                 <div class="d-flex justify-content-end align-items-center">
-                                    <a href="<?= base_url('landingpage/detail_ekskul/') . $k['id_kategori'] ?>" class="text-primary icon-move-right">Let's start
+                                    <a href="<?= base_url('landingpage/detail_ekskul/') . $k['id_kategori'] ?>" class="text-primary icon-move-right">Lebih detail
                                         <i class="fas fa-arrow-right text-xs ms-1"></i>
                                     </a>
                                 </div>
@@ -181,7 +188,7 @@
 
     <!-- -------- START HEADER 8 w/ card over right bg image ------- -->
     <section>
-        <div class="page-header min-vh-150">
+        <div class="page-header min-vh-100 mt-8 mb-8">
             <div class="container">
                 <div class="row">
                     <div class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 start-0 text-center justify-content-center flex-column">
@@ -198,47 +205,45 @@
                                 <p class="pb-3">
                                     Lengkapi Identitasmu Disini!
                                 </p>
-                                <form id="contact-form" method="post" autocomplete="off">
-                                    <div class="card-body p-0 my-3">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="input-group input-group-static mb-4">
-                                                    <input type="email" class="form-control" placeholder="Full Name">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 ps-md-2">
-                                                <div class="input-group input-group-static mb-4">
-                                                    <input type="email" class="form-control" placeholder="hello@creative-tim.com">
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group col-md-6 ps-md-2">
-                                                <select class="form-control" name="kategori_ekskul_id" id="kategori_ekskul_id">
-                                                    <option value="">Kelas</option>
-                                                    <option value=""></option>
-                                                </select>
-                                            </div>
-
-                                            <div class="form-group col-md-6 ps-md-2">
-                                                <select class="form-control" name="kategori_ekskul_id" id="kategori_ekskul_id">
-                                                    <option value="">Ekskul</option>
-                                                    <option value=""></option>
-                                                </select>
-                                            </div>
-
-                                        </div>
-                                        <div class="form-group mb-0 mt-md-0 mt-4">
+                                <div class="card-body p-0 my-3">
+                                    <div class="row">
+                                        <div class="col-md-6">
                                             <div class="input-group input-group-static mb-4">
-                                                <textarea name="message" class="form-control" id="message" rows="6" placeholder="Jelaskan alasan kamu, kenapa mau bergabung ekstrakurikuler tersebut! maksimal 250 karakter"></textarea>
+                                                <input type="email" class="form-control" placeholder="Nama Lengkap" disabled>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-12 text-center">
-                                                <button type="submit" class="btn bg-gradient-primary mt-3 mb-0">DAFTAR</button>
+                                        <div class="col-md-6 ps-md-2">
+                                            <div class="input-group input-group-static mb-4">
+                                                <input type="email" class="form-control" placeholder="hello@creative-tim.com" disabled>
                                             </div>
+                                        </div>
+
+                                        <div class="form-group col-md-6 ps-md-2">
+                                            <select class="form-control" name="kategori_ekskul_id" id="kategori_ekskul_id" disabled>
+                                                <option value="">Kelas</option>
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group col-md-6 ps-md-2">
+                                            <select class="form-control" name="kategori_ekskul_id" id="kategori_ekskul_id" disabled>
+                                                <option value="">Ekskul</option>
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group mb-0 mt-md-0 mt-4">
+                                        <div class="input-group input-group-static mb-4">
+                                            <textarea name="message" class="form-control" id="message" rows="6" placeholder="Jelaskan alasan kamu, kenapa mau bergabung ekstrakurikuler tersebut! maksimal 250 karakter" disabled></textarea>
                                         </div>
                                     </div>
-                                </form>
+                                    <div class="row">
+                                        <div class="col-md-12 text-center">
+                                            <a href="<?= base_url('auth') ?>" class="btn bg-gradient-primary mt-3 mb-0">DAFTAR</a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
