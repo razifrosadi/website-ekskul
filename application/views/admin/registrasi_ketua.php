@@ -11,7 +11,7 @@
                 <select class="form-select <?php echo form_error('ekskul') ? 'is-invalid' : ''; ?>" name="ekskul">
                     <option value="" selected>--Pilih Ekskul--</option>
                     <?php foreach ($ekskul as $e) : ?>
-                    <option value="<?= $e['ekskul_id'] ?>"><?= $e['nama_ekskul'] ?></option>
+                        <option value="<?= $e['ekskul_id'] ?>"><?= $e['nama_ekskul'] ?></option>
                     <?php endforeach; ?>
                 </select>
 
@@ -19,9 +19,9 @@
                 <select class="form-select <?php echo form_error('ketua') ? 'is-invalid' : ''; ?>" name="ketua">
                     <option value="" selected>--Pilih Siswa--</option>
                     <?php foreach ($userAll as $u) : ?>
-                    <?php if ($u['role_id'] == 2 ) { ?>
-                    <option value="<?= $u['id'] ?>"><?= $u['name'] ?></option>
-                    <?php }; ?>
+                        <?php if ($u['role_id'] == 2) { ?>
+                            <option value="<?= $u['id'] ?>"><?= $u['name'] ?></option>
+                        <?php }; ?>
                     <?php endforeach; ?>
                 </select>
 

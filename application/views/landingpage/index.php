@@ -1,13 +1,58 @@
 <header class="header-2">
-    <div class="page-header min-vh-75 relative" style="background-image: url('<?= base_url('assets/'); ?>img/curved-images/curved1.jpg')">
-        <span class="mask bg-gradient-primary opacity-4"></span>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-7 text-center mx-auto">
-                    <h1 class="text-white pt-3 mt-n5">Website Ekstrakurikuler</h1>
-                    <p class="lead text-white mt-3">SMA NEGERI 1 CISAAT</p>
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner mb-4">
+            <div class="carousel-item">
+                <div class="page-header min-vh-75 m-3 border-radius-xl" style="background-image: url('<?= base_url('assets/'); ?>img/jumbotron.png');">
+                    <span class="mask bg-gradient-dark"></span>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-6 my-auto">
+                                <h4 class="text-white mb-0 fadeIn1 fadeInBottom">Website Ekstrakurikuler</h4>
+                                <h1 class="text-white fadeIn2 fadeInBottom">SMA NEGERI 1 CISAAT</h1>
+                                <p class="lead text-white opacity-8 fadeIn3 fadeInBottom">Ayok daftarkan dirimu sekarang juga!</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <div class="carousel-item">
+                <div class="page-header min-vh-75 m-3 border-radius-xl" style="background-image: url('<?= base_url('assets/'); ?>img/jumbotron2.png');">
+                    <span class="mask bg-gradient-dark"></span>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-6 my-auto">
+                                <h4 class="text-white mb-0 fadeIn1 fadeInBottom">Dapatkan teman barumu disini</h4>
+                                <h1 class="text-white fadeIn2 fadeInBottom">Cari ekstrakurikuler yang kamu minati</h1>
+                                <p class="lead text-white opacity-8 fadeIn3 fadeInBottom">Manfaatkan waktumu sebaik mungkin dengan mengikuti ekstrakurikuler!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item active">
+                <div class="page-header min-vh-75 m-3 border-radius-xl" style="background-image: url('<?= base_url('assets/'); ?>img/jumbotron3.png');">
+                    <span class="mask bg-gradient-dark"></span>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-6 my-auto">
+                                <h4 class="text-white mb-0 fadeIn1 fadeInBottom">Ayok konsisten</h4>
+                                <h1 class="text-white fadeIn2 fadeInBottom">Asah kemampuanmu</h1>
+                                <p class="lead text-white opacity-8 fadeIn3 fadeInBottom">Latihan secara maksimal dan raih prestasimu dengan gemilang!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="min-vh-75 position-absolute w-100 top-0">
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon position-absolute bottom-50" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon position-absolute bottom-50" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </a>
         </div>
     </div>
 </header>
@@ -115,11 +160,11 @@
             <div class="row">
                 <?php foreach ($kategori as $k) : ?>
                     <div class="col-lg-4 col-md-6 my-4">
-                        <div class="card">
+                        <div class="card" style="height: 100%;">
                             <!-- Konten card -->
                             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                                 <a class="d-block blur-shadow-image">
-                                    <img src="<?= base_url('assets/'); ?>img/ilustrasi.png" alt="img-colored-shadow" class="img-fluid border-radius-lg">
+                                    <img src="<?= base_url('assets/img/') . $k['image_kategori'] ?>" alt="img-colored-shadow" class="img-fluid border-radius-lg" style="width: 100%; height: 300px;">
                                 </a>
                             </div>
                             <div class="card-body text-center">
@@ -141,11 +186,10 @@
                         </div>
                     </div>
                 <?php endforeach; ?>
-
-
             </div>
         </div>
     </section>
+
 
 
 
