@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 09 Jul 2023 pada 04.55
+-- Waktu pembuatan: 09 Jul 2023 pada 20.04
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.0.28
 
@@ -85,20 +85,21 @@ INSERT INTO `ekskul` (`ekskul_id`, `nama_ekskul`, `kategori_ekskul_id`, `ketua_i
 
 CREATE TABLE `kategori_ekskul` (
   `id_kategori` int(11) NOT NULL,
-  `nama_kategori` varchar(128) NOT NULL
+  `nama_kategori` varchar(128) NOT NULL,
+  `image_kategori` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `kategori_ekskul`
 --
 
-INSERT INTO `kategori_ekskul` (`id_kategori`, `nama_kategori`) VALUES
-(1, 'Wajib'),
-(2, 'Olahraga'),
-(3, 'Keagamaan'),
-(4, 'Seni'),
-(5, 'Bahasa'),
-(6, 'Teknologi');
+INSERT INTO `kategori_ekskul` (`id_kategori`, `nama_kategori`, `image_kategori`) VALUES
+(1, 'Wajib', 'wajib.png'),
+(2, 'Olahraga', 'olahraga.png'),
+(3, 'Keagamaan', 'keagamaan.png'),
+(4, 'Seni', 'seni.png'),
+(5, 'Bahasa', 'bahasa.png'),
+(6, 'Teknologi', 'teknologi.png');
 
 -- --------------------------------------------------------
 

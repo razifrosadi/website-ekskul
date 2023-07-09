@@ -163,8 +163,8 @@
                         <div class="card" style="height: 100%;">
                             <!-- Konten card -->
                             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                                <a class="d-block blur-shadow-image">
-                                    <img src="<?= base_url('assets/img/') . $k['image_kategori'] ?>" alt="img-colored-shadow" class="img-fluid border-radius-lg" style="width: 100%; height: 300px;">
+                                <a class="d-block blur-shadow-image" style="height: 300px; overflow: hidden;">
+                                    <img src="<?= base_url('assets/img/') . $k['image_kategori'] ?>" alt="img-colored-shadow" class="img-fluid border-radius-lg" style="object-fit: contain; width: 100%; height: 100%;">
                                 </a>
                             </div>
                             <div class="card-body text-center">
@@ -189,6 +189,7 @@
             </div>
         </div>
     </section>
+
 
 
 

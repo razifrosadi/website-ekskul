@@ -21,10 +21,10 @@
                     <?php foreach ($ekskul as $e) : ?>
                         <?php if ($e['kategori_ekskul_id'] == $k['id_kategori']) { ?>
                             <div class="col-12 col-md-6 col-lg-4 mb-4">
-                                <div class="card">
+                                <div class="card" style="height: 100%;">
                                     <div class="card-body text-center">
-                                        <a class="d-block blur-shadow-image">
-                                            <img src="<?= base_url('assets/img/logo_ekskul/') . $e['logo_ekskul'] ?>" alt="img-colored-shadow" class="img-fluid border-radius-lg">
+                                        <a class="d-block blur-shadow-image" style="height: 200px; overflow: hidden;">
+                                            <img src="<?= base_url('assets/img/logo_ekskul/') . $e['logo_ekskul'] ?>" alt="img-colored-shadow" class="img-fluid border-radius-lg" style="object-fit: contain; width: 100%; height: 100%;">
                                         </a>
                                         <h5 class="font-weight-normal mt-3">
                                             <?= $e['nama_ekskul']; ?>
