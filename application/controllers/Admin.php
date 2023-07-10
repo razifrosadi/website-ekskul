@@ -20,7 +20,7 @@ class Admin extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
         $data['user'] = $this->user->getUserData();
-        $data['all_user'] = $this->user->getUserDataAll();
+        $data['all_user'] = $this->user->getUserDataAllJoin();
         $data['roleid'] = $this->user->getUserDataRole();
 
 
@@ -42,6 +42,7 @@ class Admin extends CI_Controller
 
         $this->form_validation->set_rules('nama_ekskul', 'Ekskul', 'required');
         $this->form_validation->set_rules('kategori_ekskul_id', 'Kategori', 'required');
+        $this->form_validation->set_rules('jadwal_latihan', 'Jadwal', 'required');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
@@ -52,6 +53,7 @@ class Admin extends CI_Controller
         } else {
             $nama = $this->input->post('nama_ekskul');
             $kategori = $this->input->post('kategori_ekskul_id');
+            $jadwal = $this->input->post('jadwal_latihan');
             $upload_img = $_FILES['logo_ekskul']['name'];
 
             if ($upload_img) {
@@ -71,9 +73,10 @@ class Admin extends CI_Controller
 
             $this->db->set('nama_ekskul', $nama);
             $this->db->set('kategori_ekskul_id', $kategori);
+            $this->db->set('jadwal_latihan', $jadwal);
             $this->db->insert('ekskul');
             $this->session->set_flashdata('message', '<div class="alert alert-success text-white font-weight-bold" role="alert">
-            New Extracurriculars added!</div>');
+            Ekstrakurikuler telah ditambahkan!</div>');
             redirect('admin/add_new_ekskul');
         }
     }
@@ -102,6 +105,7 @@ class Admin extends CI_Controller
 
         $nama = $this->input->post('nama_ekskul');
         $kategori = $this->input->post('kategori_ekskul_id');
+        $jadwal = $this->input->post('jadwal_latihan');
 
         $upload_img = $_FILES['logo_ekskul']['name'];
 
@@ -122,6 +126,7 @@ class Admin extends CI_Controller
 
         $data['ekskul_row']['nama_ekskul'] = $nama; // Update nama ekskul pada data ekskul_row
         $data['ekskul_row']['kategori_ekskul_id'] = $kategori; // Update kategori ekskul pada data ekskul_row
+        $data['ekskul_row']['jadwal_latihan'] = $jadwal;
 
         $this->ekskul->update_data(['ekskul_id' => $id], $data['ekskul_row'], 'ekskul'); // Mengupdate data ekskul menggunakan model
 

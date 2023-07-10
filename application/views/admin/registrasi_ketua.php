@@ -19,9 +19,7 @@
                 <select class="form-select <?php echo form_error('ketua') ? 'is-invalid' : ''; ?>" name="ketua">
                     <option value="" selected>--Pilih Siswa--</option>
                     <?php foreach ($userAll as $u) : ?>
-                        <?php if ($u['role_id'] == 2) { ?>
-                            <option value="<?= $u['id'] ?>"><?= $u['name'] ?></option>
-                        <?php }; ?>
+                        <option value="<?= $u['id'] ?>"><?= $u['name'] ?></option>
                     <?php endforeach; ?>
                 </select>
 

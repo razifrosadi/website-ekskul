@@ -71,6 +71,9 @@
                         <div class="form-group">
                             <input type="text" class="form-control" id="nama_ekskul" name="nama_ekskul" placeholder="Nama Ekstrakurikuler">
                         </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="jadwal_latihan" name="jadwal_latihan" placeholder="Jadwal Latihan">
+                        </div>
 
                         <div class="form-group">
                             <select class="form-control" name="kategori_ekskul_id" id="kategori_ekskul_id">
