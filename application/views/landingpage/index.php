@@ -60,7 +60,7 @@
 <div class="card card-body shadow-xl mx-3 mx-md-4 mt-n6">
 
     <!-- -------- START Features w/ icons and text on left & gradient title and text on right -------- -->
-    <section class="py-sm-7 py-5 position-relative">
+    <section class="py-sm-7 py-5 position-relative" style="background-image: url('<?= base_url('assets/'); ?>img/bg2.png'); background-size: cover; backdrop-filter: blur(10px);">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 my-auto">
@@ -107,7 +107,7 @@
 
     <!-- START Blogs w/ 4 cards w/ image & text & link -->
     <section class="py-sm-7 py-5 position-relative">
-        <div class="container">
+        <div class=" container">
             <div class="row">
                 <div class="col-lg-6">
                     <h3 class="mb-5">Ada berita apa hari ini?</h3>
@@ -195,7 +195,7 @@
 
 
     <!-- -------- START Features w/ pattern background & stats & rocket -------- -->
-    <section class="pb-5 position-relative bg-gradient-primary mx-n3">
+    <section class="pb-5 position-relative" style="background-image: url('<?= base_url('assets/'); ?>img/bg.png'); background-repeat: no-repeat;  background-size: cover; backdrop-filter: blur(10px);">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 text-start mb-5 mt-5">
@@ -237,7 +237,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 start-0 text-center justify-content-center flex-column">
-                        <div class="position-relative h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center" style="background-image: url('./assets/img/illustrations/illustration-signin.jpg'); background-size: cover;" loading="lazy"></div>
+                        <div class="position-relative h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center" style="background-image: url('<?= base_url('assets/'); ?>img/daftar.png'); background-size: contain; background-repeat: no-repeat; background-position: center center;" loading="lazy"></div>
                     </div>
                     <div class="col-xl-5 col-lg-6 col-md-7 d-flex flex-column ms-auto me-auto ms-lg-auto me-lg-5">
                         <div class="card d-flex blur justify-content-center shadow-lg my-sm-0 my-sm-6 mt-8 mb-5">
