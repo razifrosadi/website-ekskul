@@ -17,7 +17,25 @@ class User_model extends CI_Model
 
     public function getUserDataAll()
     {
-        $query = $this->db->get('user');
+        $this->db->select('*');
+        $this->db->from('user');
+        $this->db->join('user_role', 'user.role_id = user_role.id');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+    public function getUserDataRole()
+    {
+        $this->db->select('*');
+        $this->db->from('user_role');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+    public function getAllroleById($id)
+    {
+        $this->db->select('*');
+        $this->db->from('user_role');
+        $this->db->where('id', $id);
+        $query = $this->db->get();
         return $query->result_array();
     }
 }

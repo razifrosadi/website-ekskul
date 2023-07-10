@@ -15,18 +15,12 @@ class Siswa extends CI_Controller
     {
         $data['title'] = 'Pendaftaran Ekstrakurikuler';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        // var_dump($data['user']);
-        // die();
         $data['siswa'] = $this->siswa->getAllSiswa();
         $data['kelas'] = $this->siswa->getAllKelas();
         $data['ekskul'] = $this->siswa->getAllEkskul();
-        // var_dump($data['ekskul']);
-        // die();
         $data['siswatolak'] = $this->siswa->getSiswaDitolak($data['user']['id']);
         $data['siswaterima'] = $this->siswa->getSiswaDiterima($data['user']['id']);
         $data['showSpecialContent'] = true;
-        // var_dump($data['siswatolak']);
-        // die();
 
 
         $this->form_validation->set_rules('nama_lengkap', 'Nama Lengkap', 'required');
@@ -34,11 +28,19 @@ class Siswa extends CI_Controller
         $this->form_validation->set_rules('alasan', 'Alasan', 'required');
 
         if ($this->form_validation->run() == false) {
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('templates/topbar', $data);
-            $this->load->view('siswa/index', $data);
-            $this->load->view('templates/footer');
+            if (!$data['siswaterima']) {
+                $this->load->view('templates/header', $data);
+                $this->load->view('templates/sidebar', $data);
+                $this->load->view('templates/topbar', $data);
+                $this->load->view('siswa/index', $data);
+                $this->load->view('templates/footer');
+            } else {
+                $this->load->view('templates/header', $data);
+                $this->load->view('templates/sidebar', $data);
+                $this->load->view('templates/topbar', $data);
+                $this->load->view('siswa/diterima', $data);
+                $this->load->view('templates/footer');
+            }
         } else {
             $nama = $this->input->post('nama_lengkap');
             $wa = $this->input->post('no_wa');
@@ -68,7 +70,8 @@ class Siswa extends CI_Controller
         $data['title'] = 'Informasi Ekstrakurikuler';
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
-        $data['informasi'] = $this->tambah_informasi->getTambah_informasiDataAll($data['user']['id']);
+        $data['informasi'] = $this->tambah_informasi->getTambah_informasiDataAll($data['user']['id'], 'Diterima');
+
         // var_dump($data['informasi']);
         // die(); // Mengambil data berita dari model
 

@@ -20,7 +20,7 @@
                                             <?php foreach ($siswatolak as $st) : ?>
                                                 <div class="d-flex flex-column justify-content-center">
                                                     <h6 class="text-sm font-weight-normal mb-1">
-                                                        <span class="font-weight-bold">Mohon Maaf! </span> <?= $st['nama_lengkap']; ?> Anda <?= $st['status']; ?> di Ekstrakurikuler <b><?= $st['nama_ekskul'] ?></b>
+                                                        <span class="font-weight-bold">Mohon Maaf! </span> <?= $st['nama_lengkap']; ?> Anda <?= $st['status']; ?> di Ekstrakurikuler <b><?= $st['nama_ekskul'] ?></b> <br>Mohon untuk mendaftar ulang!
                                                     </h6>
 
                                                 </div>

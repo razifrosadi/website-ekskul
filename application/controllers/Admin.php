@@ -21,6 +21,7 @@ class Admin extends CI_Controller
         $this->session->userdata('email')])->row_array();
         $data['user'] = $this->user->getUserData();
         $data['all_user'] = $this->user->getUserDataAll();
+        $data['roleid'] = $this->user->getUserDataRole();
 
 
         $this->load->view('templates/header', $data);
@@ -294,7 +295,7 @@ class Admin extends CI_Controller
                 die();
             } else {
                 $upload_img = $this->upload->data('file_name');
-                $data['ekskul_row']['image_berita'] = $upload_img; // Update nama file logo pada data berita_row
+                $data['berita_row']['image_berita'] = $upload_img; // Update nama file logo pada data berita_row
             }
         }
         $upload_img = $_FILES['image_berita2']['name'];
@@ -310,7 +311,7 @@ class Admin extends CI_Controller
                 die();
             } else {
                 $upload_img = $this->upload->data('file_name');
-                $data['ekskul_row']['image_berita2'] = $upload_img; // Update nama file logo pada data berita_row
+                $data['berita_row']['image_berita2'] = $upload_img; // Update nama file logo pada data berita_row
             }
         }
 
@@ -396,6 +397,7 @@ class Admin extends CI_Controller
         $data['title'] = 'Tambahkan Pelatih';
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
+        $data['ekskul'] = $this->ekskul->getAllEkskul();
 
         $data['pelatih'] = $this->pelatih->edit_data($where, 'pelatih')->result();
         $this->load->view('templates/header', $data);

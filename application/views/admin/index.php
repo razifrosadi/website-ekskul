@@ -11,9 +11,9 @@
                         <tr>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Date Created</th>
-                            <th>RoleID</th>
-                            <th>Images</th>
+                            <th>Tanggal gabung</th>
+                            <th>Status</th>
+                            <th>gambar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -24,7 +24,9 @@
                                 <td><?= $users['name']; ?></td>
                                 <td><?= $users['email']; ?></td>
                                 <td><?= date('d F Y', $users['date_created']); ?></td>
-                                <td><?= $users['role_id']; ?></td>
+
+                                <td><?= $users['role']; ?></td>
+
                                 <td><?= $users['image']; ?></td>
                             </tr>
                         <?php endforeach; ?>

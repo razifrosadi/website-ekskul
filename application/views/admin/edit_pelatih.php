@@ -14,7 +14,7 @@
                             <select class="form-control" name="id_ekskul" id="id_ekskul">
                                 <option value="">Select Menu</option>
                                 <?php foreach ($ekskul as $e) : ?>
-                                    <option value="<?= $e->ekskul_id; ?>" <?php if ($e->id_pelatih == $e->id_ekskul) echo 'selected'; ?>><?= $e->nama_ekskul; ?></option>
+                                    <option value="<?= $e['ekskul_id']; ?>"><?= $e['nama_ekskul']; ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
