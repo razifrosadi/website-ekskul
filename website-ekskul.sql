@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 09 Jul 2023 pada 20.04
+-- Waktu pembuatan: 11 Jul 2023 pada 16.45
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.0.28
 
@@ -42,7 +42,7 @@ CREATE TABLE `berita` (
 --
 
 INSERT INTO `berita` (`id_berita`, `judul_berita`, `deskripsi_berita`, `tanggal_berita`, `image_berita`, `image_berita2`, `keterangan_berita`) VALUES
-(7, 'Selamat Tim Futsal Smancis!', 'Juara 3 Turnamen SPORT ORGANIZER yang dilaksanakan di GOR Surya Kencana', '2023-07-09 02:59:09', 'WhatsApp_Image_2023-01-26_at_11_10_48.jpeg', '', 'Tim futsal smancis kembali meraih prestasi yang membanggakan dengan menyabet medali perunggu di ajang turnamen SPORT ORGANIZER yang dilaksanakan di GOR Surya Kencana Sukabumi. Congrats yaaaaa!'),
+(7, 'Selamat Tim Futsal Smancis!', 'Juara 3 Turnamen SPORT ORGANIZER yang dilaksanakan di GOR Surya Kencana', '2023-07-10 10:38:56', 'WhatsApp_Image_2023-01-26_at_11_10_48.jpeg', 'dokumentasi_futsal_juara2.jpeg', 'Tim futsal smancis kembali meraih prestasi yang membanggakan dengan menyabet medali perunggu di ajang turnamen SPORT ORGANIZER yang dilaksanakan di GOR Surya Kencana Sukabumi. Congrats yaaaaa!'),
 (8, 'Selamat ZHEPRASCA Smancis', 'Juara umum LKBB PASHION SMKS 1 PGRI Kota Sukabumi', '2023-07-03 12:37:24', 'WhatsApp_Image_2023-01-26_at_21_59_45_(2).jpeg', '', ''),
 (9, 'Kegiatan Demonstrasi ', 'Pertunjukan Tari dari Sentasic memeriahkan acara demo ekskul!', '2023-07-03 12:49:54', 'WhatsApp-Image-2021-07-12-at-10_49_48-370x370.jpeg', '', ''),
 (10, 'Selamat ZHEPRASCA Smancis', 'Juara umum LKBB PASHION SMKS 1 PGRI Kota Sukabumi', '2023-07-09 03:46:29', 'WhatsApp_Image_2023-01-26_at_21_59_45_(1).jpeg', 'WhatsApp-Image-2021-07-05-at-14_33_25-2-370x370.jpeg', 'Zheprasca Smancis meraih Juara Umum pada lomba LKBB PASHION CUP yang dilaksanakan di SMKS 1 PGRI Kota Sukabumi. diantaranya ialah meraih Juara Bina 1, Juara Harapan Bina 1, dan Juara Kostum Terbaik ke-2. '),
@@ -68,12 +68,12 @@ CREATE TABLE `ekskul` (
 --
 
 INSERT INTO `ekskul` (`ekskul_id`, `nama_ekskul`, `kategori_ekskul_id`, `ketua_id`, `logo_ekskul`, `jadwal_latihan`) VALUES
-(15, 'Pramuka', 1, 9, 'WhatsApp-Image-2022-06-27-at-11_46_15-AM-370x240.jpeg', 'Selasa dan Rabu Pukul 15.00'),
+(15, 'Pramuka', 1, 9, 'pramuka.png', 'Selasa dan Rabu Pukul 15.00'),
 (16, 'Basket', 2, 11, 'basca1.png', 'Rabu dan Jum\'at Pukul 15.00'),
 (17, 'Futsal', 2, 14, 'futsal.png', 'Selasa dan Kamis Pukul 15.00'),
 (18, 'Taekwondo', 2, NULL, 'WhatsApp_Image_2023-01-26_at_21_48_05.jpeg', 'Rabu dan Jum\'at Pukul 15.00'),
 (19, 'Seni Musik dan Tari', 4, NULL, 'sentasic.png', 'Selasa dan Jum\'at Pukul 15.00'),
-(20, 'Jappanese Club', 5, NULL, 'WhatsApp-Image-2021-08-06-at-15_08_09-370x370.jpeg', 'Senin dan Selasa Pukul 15.00'),
+(20, 'Jappanese Club', 5, 16, 'WhatsApp-Image-2021-08-06-at-15_08_09-370x370.jpeg', 'Senin dan Selasa Pukul 15.00'),
 (21, 'Pencak Silat', 2, NULL, 'silat.png', 'Rabu dan Jum\'at Pukul 15.00'),
 (22, 'Karate', 2, NULL, 'karate.png', 'Rabu dan Kamis Pukul 15.00');
 
@@ -140,7 +140,7 @@ CREATE TABLE `pelatih` (
 --
 
 INSERT INTO `pelatih` (`id_pelatih`, `nama_pelatih`, `id_ekskul`, `deskripsi_pelatih`, `image_pelatih`) VALUES
-(2, 'Frihat Firmansyah', 16, 'Tiga kali membawa juara tingkat kabupaten/kota', 'basca11.jpg');
+(2, 'Frihat Firmansyah', 16, 'Tiga kali membawa juara tingkat kabupaten/kota', 'default.jpg');
 
 -- --------------------------------------------------------
 
@@ -167,7 +167,8 @@ INSERT INTO `siswa` (`id_siswa`, `nama_lengkap`, `no_wa`, `kelas_id`, `ekskul_id
 (3, 'dwi fahriza', '09873672882', 2, 15, 'gabut', 'Ditolak', 15),
 (4, 'Wildan', '097768789', 2, 15, 'gabut', 'Diterima', 13),
 (5, 'fauzy', '0976567', 3, 15, 'okeh', 'Diterima', 14),
-(13, 'hilman', '09873672882', 1, 16, 'gabut', 'Diterima', 12);
+(13, 'hilman', '09873672882', 1, 16, 'gabut', 'Diterima', 12),
+(15, 'rafli', '09873672882', 2, 20, 'gabut', 'Pending', 16);
 
 -- --------------------------------------------------------
 
@@ -219,7 +220,8 @@ INSERT INTO `user` (`id`, `name`, `email`, `image`, `password`, `role_id`, `is_a
 (12, 'hilman', 'hilman@gmail.com', 'default.jpg', '$2y$10$Qd1HL2xEUxcGlZk1rdZZju4rNyTVSSYjpJksCgvrLsdB6O5smHIa2', 2, 1, 1687502215),
 (13, 'wildan', 'wildan@gmail.com', 'default.jpg', '$2y$10$JDFdyYhnH4djoBT/3tlyp.hAmD9ccA3Blff5YRLvFd6rsDq8qyyeq', 2, 1, 1687507678),
 (14, 'fauzy', 'fauzy@gmail.com', 'default.jpg', '$2y$10$FMwCHcdQbCVLZjnc8ZQj7.k5JkF8D.NS70pBz0djL2hLneLAAq2yW', 3, 1, 1687508026),
-(15, 'dwi fahriza', 'dwifahriza@gmail.com', 'default.jpg', '$2y$10$NcnhTHFKjdOHLVQyV9RC.uXzM2l8Ll4MAnaHCLKW17tLPJ/nnmKOe', 2, 1, 1687508240);
+(15, 'dwi fahriza', 'dwifahriza@gmail.com', 'default.jpg', '$2y$10$NcnhTHFKjdOHLVQyV9RC.uXzM2l8Ll4MAnaHCLKW17tLPJ/nnmKOe', 2, 1, 1687508240),
+(16, 'rafli', 'rafli@gmail.com', 'default.jpg', '$2y$10$Qf2sj3cTdCP2WUOhqK4OzeESvhAcslJJaZpQWxNxE8LZ0mwGpeIo6', 3, 1, 1689008037);
 
 -- --------------------------------------------------------
 
@@ -381,7 +383,8 @@ ALTER TABLE `tambah_informasi`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD UNIQUE KEY `email` (`email`),
+  ADD KEY `role_id` (`role_id`);
 
 --
 -- Indeks untuk tabel `user_access_menu`
@@ -445,7 +448,7 @@ ALTER TABLE `pelatih`
 -- AUTO_INCREMENT untuk tabel `siswa`
 --
 ALTER TABLE `siswa`
-  MODIFY `id_siswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_siswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT untuk tabel `tambah_informasi`
@@ -457,7 +460,7 @@ ALTER TABLE `tambah_informasi`
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_access_menu`
@@ -513,6 +516,12 @@ ALTER TABLE `siswa`
 --
 ALTER TABLE `tambah_informasi`
   ADD CONSTRAINT `tambah_informasi_ibfk_1` FOREIGN KEY (`ekskul_id`) REFERENCES `ekskul` (`ekskul_id`);
+
+--
+-- Ketidakleluasaan untuk tabel `user`
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `user_role` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
