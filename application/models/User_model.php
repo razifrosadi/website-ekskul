@@ -23,6 +23,25 @@ class User_model extends CI_Model
         $query = $this->db->get();
         return $query->result_array();
     }
+
+    public function updateBulk($idNewKetua, $idOldKetua)
+    {
+        $query = "UPDATE user SET role_id = (CASE id WHEN $idNewKetua THEN 3 WHEN $idOldKetua THEN 2 END) WHERE id IN($idNewKetua, $idOldKetua)";
+        return $this->db->query($query);
+    }
+
+    public function getOldKetua($ekskulid, $ketuaId)
+    {
+        $query = "SELECT * FROM user JOIN ekskul ON user.id = ekskul.ketua_id WHERE ekskul.ekskul_id = $ekskulid AND ekskul.ketua_id = $ketuaId";
+        return $this->db->query($query);
+    }
+
+    public function setOldKetua($ketuaId)
+    {
+        $query = "UPDATE user SET user.role_id = 2 WHERE user.id = $ketuaId";
+        return $this->db->query($query);
+    }
+
     public function getUserDataAllJoin()
     {
         $this->db->select('*');

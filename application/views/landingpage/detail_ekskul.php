@@ -29,9 +29,10 @@
                                         <h5 class="font-weight-normal mt-3">
                                             <?= $e['nama_ekskul']; ?>
                                         </h5>
-                                        <h5 class="font-weight-normal mt-3">
-                                            <?= $e['jadwal_latihan']; ?>
-                                        </h5>
+
+                                        <a href="<?= base_url('landingpage/deskripsi_ekskul/') . $e['ekskul_id'] ?>" class="text-primary icon-move-right">Baca selengkapnya
+                                            <i class="fas fa-arrow-right text-sm ms-1"></i>
+                                        </a>
                                     </div>
                                 </div>
                             </div>

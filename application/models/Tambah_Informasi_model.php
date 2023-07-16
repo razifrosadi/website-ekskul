@@ -19,6 +19,21 @@ class Tambah_informasi_model extends CI_Model
         return $this->db->query($query)->result_array();
     }
 
+    public function getTambah_informasiDataByEkskulId($id_ekskul)
+    {
+        $queryTambah_informasi = "SELECT * FROM tambah_informasi  WHERE ekskul_id = $id_ekskul";
+        return $this->db->query($queryTambah_informasi)->result_array();
+    }
+
+    public function getInformasiById($id)
+    {
+        $this->db->select('*');
+        $this->db->from('tambah_informasi');
+        $this->db->where('id_informasi', $id);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     function input_data($data, $table)
     {
         $this->db->insert($table, $data);

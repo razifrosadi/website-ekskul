@@ -16,12 +16,26 @@
                             </div>
 
                             <div class="input-group input-group-static my-3">
-                                <input type="datetime-local" class="form-control" value="<?= $in->tanggal_informasi ?>">
+                                <input type="datetime-local" class="form-control" id="tanggal_informasi" name="tanggal_informasi">
                             </div>
 
-                            <div class="form-group">
-                                <input type="file" class="form-control" name="image_informasi" placeholder="Gambar informasi" value="<?= $in->image_informasi ?>">
+
+                            <div class="form-group row">
+                                <div class="col-sm-2">Picture</div>
+                                <div class="col-sm-10">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <img src="<?= base_url('assets/img/logo_ekskul/') . $in->image_informasi ?>" class="img-thumbnail">
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <div class="form-group">
+                                                <input type="file" name="image_informasi" id="image_informasi" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+
                         </div>
                     </div>
                 </div>

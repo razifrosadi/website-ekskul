@@ -31,13 +31,13 @@ class Siswa extends CI_Controller
             if (!$data['siswaterima']) {
                 $this->load->view('templates/header', $data);
                 $this->load->view('templates/sidebar', $data);
-                $this->load->view('templates/topbar', $data);
+                $this->load->view('templates/topbar_notif', $data);
                 $this->load->view('siswa/index', $data);
                 $this->load->view('templates/footer');
             } else {
                 $this->load->view('templates/header', $data);
                 $this->load->view('templates/sidebar', $data);
-                $this->load->view('templates/topbar', $data);
+                $this->load->view('templates/topbar_notif', $data);
                 $this->load->view('siswa/diterima', $data);
                 $this->load->view('templates/footer');
             }
@@ -79,6 +79,24 @@ class Siswa extends CI_Controller
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('siswa/terima_informasi', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function detail_informasi($id)
+    {
+        $data['title'] = 'Detail Informasi';
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+        $data['getinformasi'] = $this->tambah_informasi->getInformasiById($id);
+        // var_dump(['getinformasi']);
+        // die();
+
+
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('siswa/detail_informasi', $data);
         $this->load->view('templates/footer');
     }
 }

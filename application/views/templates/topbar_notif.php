@@ -7,7 +7,39 @@
                 </div>
 
                 <ul class="navbar-nav  justify-content-end">
+                    <li class="nav-item dropdown pe-4 d-flex align-items-center">
+                        <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-bell cursor-pointer"></i>
+                        </a>
+                        <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+                            <?php if ($showSpecialContent) : ?>
+                                <li class="mb-2">
+                                    <a class="dropdown-item border-radius-md" href="javascript:;">
+                                        <div class="d-flex py-1">
 
+                                            <?php foreach ($siswatolak as $st) : ?>
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="text-sm font-weight-normal mb-1">
+                                                        <span class="font-weight-bold">Mohon Maaf! </span> <?= $st['nama_lengkap']; ?> Anda <?= $st['status']; ?> di Ekstrakurikuler <b><?= $st['nama_ekskul'] ?></b> <br>Mohon untuk mendaftar ulang!
+                                                    </h6>
+
+                                                </div>
+                                            <?php endforeach; ?>
+                                        </div>
+                                        <div class="d-flex py-1">
+                                            <?php foreach ($siswaterima as $stm) : ?>
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="text-sm font-weight-normal mb-1">
+                                                        <span class="font-weight-bold">Selamat! </span> <?= $stm['nama_lengkap']; ?> Anda <?= $stm['status']; ?> di Ekstrakurikuler <b><?= $stm['nama_ekskul'] ?></b>
+                                                    </h6>
+                                                </div>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    </a>
+                                </li>
+                            <?php endif; ?>
+                        </ul>
+                    </li>
                     <li class="nav-item pe-2 d-flex align-items-center">
                         <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
                             <i class="fa fa-user me-sm-1"></i>

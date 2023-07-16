@@ -7,7 +7,7 @@
         <div class="card-body">
             <p class="mt-2" style="margin-bottom: -1px;">Pilih Ekskul</p>
 
-            <form action="registrasi_ketua" method="POST">
+            <form action="<?= base_url('admin/registrasi_ketua') ?>" method="POST">
                 <select class="form-select <?php echo form_error('ekskul') ? 'is-invalid' : ''; ?>" name="ekskul">
                     <option value="" selected>--Pilih Ekskul--</option>
                     <?php foreach ($ekskul as $e) : ?>

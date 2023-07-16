@@ -17,7 +17,7 @@
                 </thead>
                 <tbody>
                     <?php $i = 1; ?>
-                    <?php foreach ($informasi as $in) : ?>
+                    <?php foreach ($getinformasi as $in) : ?>
                         <tr>
                             <td>
                                 <div class="d-flex px-2 py-1">

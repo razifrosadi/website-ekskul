@@ -39,10 +39,15 @@ class Admin extends CI_Controller
         $this->session->userdata('email')])->row_array();
         $data['ekskul'] = $this->ekskul->getAllEkskul();
         $data['kategori'] = $this->ekskul->getAllKategori();
+        $data['userAll'] = $this->user->getUserDataAll();
+        // var_dump(['ekskul']);
+        // die();
 
         $this->form_validation->set_rules('nama_ekskul', 'Ekskul', 'required');
         $this->form_validation->set_rules('kategori_ekskul_id', 'Kategori', 'required');
         $this->form_validation->set_rules('jadwal_latihan', 'Jadwal', 'required');
+        $this->form_validation->set_rules('ketua_id', 'Ketua', 'required');
+        $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
@@ -54,6 +59,8 @@ class Admin extends CI_Controller
             $nama = $this->input->post('nama_ekskul');
             $kategori = $this->input->post('kategori_ekskul_id');
             $jadwal = $this->input->post('jadwal_latihan');
+            $ketua = $this->input->post('ketua_id');
+            $deskripsi = $this->input->post('deskripsi');
             $upload_img = $_FILES['logo_ekskul']['name'];
 
             if ($upload_img) {
@@ -74,6 +81,8 @@ class Admin extends CI_Controller
             $this->db->set('nama_ekskul', $nama);
             $this->db->set('kategori_ekskul_id', $kategori);
             $this->db->set('jadwal_latihan', $jadwal);
+            $this->db->set('ketua_id', $ketua);
+            $this->db->set('deskripsi', $deskripsi);
             $this->db->insert('ekskul');
             $this->session->set_flashdata('message', '<div class="alert alert-success text-white font-weight-bold" role="alert">
             Ekstrakurikuler telah ditambahkan!</div>');
@@ -87,7 +96,10 @@ class Admin extends CI_Controller
         $data['title'] = 'Edit Ekskul';
         $data['ekskul'] = $this->ekskul->edit_data($where, 'ekskul')->result_array();
         $data['kategori'] = $this->ekskul->getAllKategori();
+        $data['userAll'] = $this->user->getUserDataAll();
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        // var_dump(['userAll']);
+        // die();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -103,11 +115,19 @@ class Admin extends CI_Controller
         $id = $this->input->post('ekskul_id');
         $data['ekskul_row'] = $this->ekskul->getEkskulRow($id);
 
+        // var_dump(['ekskul_row' => $data]);
+        // die();
+
         $nama = $this->input->post('nama_ekskul');
         $kategori = $this->input->post('kategori_ekskul_id');
         $jadwal = $this->input->post('jadwal_latihan');
+        $ketua = $this->input->post('ketua_id');
+        $deskripsi = $this->input->post('deskripsi');
+
 
         $upload_img = $_FILES['logo_ekskul']['name'];
+
+        $this->form_validation->set_rules('ketua', 'Ketua', 'required');
 
         if ($upload_img) {
             $config['upload_path']      = './assets/img/logo_ekskul';
@@ -127,8 +147,12 @@ class Admin extends CI_Controller
         $data['ekskul_row']['nama_ekskul'] = $nama; // Update nama ekskul pada data ekskul_row
         $data['ekskul_row']['kategori_ekskul_id'] = $kategori; // Update kategori ekskul pada data ekskul_row
         $data['ekskul_row']['jadwal_latihan'] = $jadwal;
+        $data['ekskul_row']['ketua_id'] = $ketua;
+        $data['ekskul_row']['deskripsi'] = $deskripsi;
 
         $this->ekskul->update_data(['ekskul_id' => $id], $data['ekskul_row'], 'ekskul'); // Mengupdate data ekskul menggunakan model
+
+
 
         redirect('admin/add_new_ekskul');
     }
@@ -150,6 +174,11 @@ class Admin extends CI_Controller
         $data['ekskul'] = $this->ekskul->getAllEkskul();
         $data['userAll'] = $this->user->getUserDataAll();
 
+        // var_dump($data['ekskulById']);
+        // var_dump($data['userById']);
+        // die();
+
+
         $this->form_validation->set_rules('ekskul', 'Ekskul', 'required');
         $this->form_validation->set_rules('ketua', 'Ketua', 'required');
 
@@ -162,14 +191,13 @@ class Admin extends CI_Controller
         } else {
             $ekskul = $this->input->post('ekskul');
             $ketua = $this->input->post('ketua');
+            $byIdEks = $this->ekskul->getAllEkskulById($ekskul);
 
-            $this->db->set('ketua_id', $ketua);
-            $this->db->where('ekskul_id', $ekskul);
-            $this->db->update('ekskul');
 
-            $this->db->set('role_id', 3);
-            $this->db->where('id', $ketua);
-            $this->db->update('user');
+            $this->ekskul->updateKetuaEskul($ekskul, $ketua);
+
+            $this->user->updateBulk($ketua, $byIdEks[0]['ketua_id']);
+
 
             $this->session->set_flashdata('message', '
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -455,7 +483,4 @@ class Admin extends CI_Controller
         $this->pelatih->delete_data($where, 'pelatih');
         redirect('admin/pelatih');
     }
-
-    // pilih ketua
-
 }

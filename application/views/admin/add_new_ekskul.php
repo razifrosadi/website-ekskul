@@ -12,7 +12,9 @@
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nama Ekskul</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Kategori</th>
-                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Logo Ekstrakurikuler</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Jadwal</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Deskripsi</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Logo</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                     </tr>
                 </thead>
@@ -32,6 +34,12 @@
                             </td>
                             <td>
                                 <p class="text-xs font-weight-bold mb-0"><?= $e['nama_kategori']; ?></p>
+                            </td>
+                            <td>
+                                <p class="text-xs font-weight-bold mb-0"><?= $e['jadwal_latihan']; ?></p>
+                            </td>
+                            <td>
+                                <p class="text-xs font-weight-bold mb-0"><?= implode(' ', array_slice(explode(' ', $e['deskripsi']), 0, 5)); ?>....</p>
                             </td>
                             <td>
                                 <div class="author align-items-center">
@@ -82,6 +90,13 @@
                                     <option value="<?= $k['id_kategori']; ?>"><?= $k['nama_kategori']; ?></option>
                                 <?php endforeach; ?>
                             </select>
+                        </div>
+
+                        <div class="form-group mb-0 mt-md-0 mt-4">
+                            <div class="input-group input-group-static mb-4">
+                                <textarea class="form-control" name="deskripsi" id="deskripsi" rows="6" placeholder="Jelaskan deskripsi ekstrakurikuler, maksimal 250 karakter"></textarea>
+                            </div>
+                            <?= form_error('deskripsi', '<small class="text-danger"">', '</small>') ?>
                         </div>
 
                         <div class="form-group">

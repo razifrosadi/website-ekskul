@@ -58,4 +58,18 @@ class Landingpage extends CI_Controller
         $this->load->view('landingpage/detail_berita', $data);
         $this->load->view('templates/landingpage_footer');
     }
+
+    public function deskripsi_ekskul($id)
+    {
+        $data['title'] = 'Deskripsi Ekstrakurikuler';
+
+        $data['ekskul'] = $this->ekskul->getAllEkskulById($id);
+
+
+        $this->load->view('templates/header', $data);
+        // $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/landingpage_topbar');
+        $this->load->view('landingpage/deskripsi_ekskul', $data);
+        $this->load->view('templates/landingpage_footer');
+    }
 }

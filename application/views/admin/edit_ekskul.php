@@ -19,6 +19,27 @@
                             </select>
                         </div>
 
+                        <div class="form-group">
+                            <input type="hidden" name="jadwal_latihan" value="<?= $e['jadwal_latihan']; ?>">
+                            <input type="text" class="form-control" id="jadwal_latihan" name="jadwal_Latihan" placeholder="Jadwal Latihan" value="<?= $e['jadwal_latihan']; ?>">
+                        </div>
+
+                        <div class="form-group">
+                            <select class="form-control" name="ketua_id" id="ketua_id">
+                                <option value="" selected>--Pilih Siswa--</option>
+                                <?php foreach ($userAll as $u) : ?>
+                                    <option value="<?= $u['id']; ?>" <?php if ($u['id'] == $e['ketua_id']) echo 'selected'; ?>><?= $u['name'] ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+
+                        <div class="form-group mb-0 mt-md-0 mt-4">
+                            <div class="input-group input-group-static mb-4">
+                                <textarea class="form-control" name="deskripsi" id="deskripsi" rows="6" placeholder="Jelaskan deskripsi ekstrakurikuler, maksimal 250 karakter"><?= $e['deskripsi']; ?></textarea>
+                            </div>
+                            <?= form_error('deskripsi', '<small class="text-danger"">', '</small>') ?>
+                        </div>
+
                         <div class="form-group row">
                             <div class="col-sm-2">Picture</div>
                             <div class="col-sm-10">

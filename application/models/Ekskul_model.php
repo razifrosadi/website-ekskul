@@ -8,8 +8,23 @@ class Ekskul_model extends CI_Model
         $this->db->select('*');
         $this->db->from('ekskul');
         $this->db->join('kategori_ekskul', 'ekskul.kategori_ekskul_id = kategori_ekskul.id_kategori');
+        $this->db->order_by('nama_ekskul', 'ASC');
         $query = $this->db->get();
         return $query->result_array();
+    }
+
+
+    public function getEkskulByKetua($id)
+    {
+        $query = "SELECT * FROM ekskul JOIN user ON ekskul.ketua_id = user.id  WHERE ekskul.ketua_id = $id AND user.role_id = '2'";
+        return $this->db->query($query)->result_array();
+    }
+
+    public function updateKetuaEskul($ekskul_id, $ketua_id)
+    {
+        $this->db->set('ketua_id', $ketua_id);
+        $this->db->where('ekskul_id', $ekskul_id);
+        $this->db->update('ekskul');
     }
 
     function getEkskulByKategori($id)
@@ -58,6 +73,15 @@ class Ekskul_model extends CI_Model
         return $this->db->query($queryEkskul)->result_array();
     }
 
+    public function getAllEkskulById($id)
+    {
+        $this->db->select('*');
+        $this->db->from('ekskul');
+        $this->db->where('ekskul_id', $id);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     public function getEkskulDataAll()
     {
         return $this->db->get_where('ekskul', ['ekskul_id !=' => 1])->result_array();
@@ -81,12 +105,6 @@ class Ekskul_model extends CI_Model
 
     function delete_data($where, $table)
     {
-        if ($table == 'ekskul') {
-            // Hapus data ketua yang memiliki ekskul_nama yang sama dengan ekskul_id yang dihapus
-            $ekskul_row = $this->getEkskulRow($where['ekskul_id']);
-            $ekskul_nama = $ekskul_row['nama_ekskul'];
-            $this->db->delete('ketua', ['ekskul_nama' => $ekskul_nama]);
-        }
 
         $this->db->where($where);
         $this->db->delete($table);

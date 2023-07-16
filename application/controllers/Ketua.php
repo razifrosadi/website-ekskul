@@ -38,6 +38,7 @@ class Ketua extends CI_Controller
         $data['ekskul'] = $this->ekskul->getEkskulByKetuaId($data['user']['id']);
 
         $data['informasi'] = $this->tambah_informasi->getTambah_informasiDataAll($data['ekskul']['ekskul_id']);
+        $data['getinformasi'] = $this->tambah_informasi->getTambah_informasiDataByEkskulId($data['ekskul']['ekskul_id']);
 
         $this->form_validation->set_rules('judul_informasi', 'Judul', 'required');
         $this->form_validation->set_rules('deskripsi_informasi', 'Deskripsi', 'required');
@@ -130,7 +131,7 @@ class Ketua extends CI_Controller
 
         // Mengubah format tanggal ke format datetime
         $tanggal_obj = new DateTime($tanggal);
-        $tanggal_db = $tanggal_obj->format('Y-m-d H:i:s');
+        $tanggal_db = $tanggal_obj->format('Y-m-d H:i');
 
         $data['tambah_informasi_row']['judul_informasi'] = $judul; // Update nama tambah_informasi pada data tambah_informasi_row
         $data['tambah_informasi_row']['deskripsi_informasi'] = $deskripsi; // Update kategori tambah_informasi pada data ekskul_row
