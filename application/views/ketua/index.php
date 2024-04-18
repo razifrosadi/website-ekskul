@@ -11,6 +11,8 @@
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">No Whatsapp</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Kelas</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Ekskul</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Pengalaman</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Sertifikat</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Alasan</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                     </tr>
@@ -43,6 +45,21 @@
                                 <p class="text-xs font-weight-bold mb-0"><?= $s['nama_ekskul']; ?></p>
                                 <p class="text-xs text-secondary mb-0"></p>
                             </td>
+                            <td>
+                                <p class="text-xs font-weight-bold mb-0"><?= $s['pengalaman']; ?></p>
+                                <p class="text-xs text-secondary mb-0"></p>
+                            </td>
+                            <td>
+                                <?php if (isset($s['image_sertifikat']) && $s['image_sertifikat'] != '') : ?>
+                                    <div class="author align-items-center">
+                                        <a href="<?= base_url('assets/img/logo_ekskul/') . $s['image_sertifikat'] ?>" data-fancybox>
+                                            <img src="<?= base_url('assets/img/logo_ekskul/') . $s['image_sertifikat'] ?>" alt="..." class="avatar shadow">
+                                        </a>
+                                    </div>
+                                <?php endif; ?>
+                                <div class="name ps-3">
+                            </td>
+
                             <td>
                                 <p class="text-xs font-weight-bold mb-0"><?= $s['alasan']; ?></p>
                                 <p class="text-xs text-secondary mb-0"></p>

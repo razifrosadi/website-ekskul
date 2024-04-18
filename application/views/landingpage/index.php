@@ -67,7 +67,7 @@
                     <h3 class="mt-5 mt-lg-0">Sejarah Singkat SMAN 1 CISAAT</h3>
                     <p class="pe-5">SMA Negeri 1 Cisaat mulai berdiri tanggal 16 Juli 1979. Pada awal berdirinya proses belajar mengajar dilaksanakan di SMP Negeri Cisaat. Pada tanggal 10 Juni 1981 gedung SMA Negeri 1 Cisaat diresmikan oleh Menteri Pendidikan dan Kebudayaan Dr.Daud Yusuf, berlokasi di Jl. Veteran Km.3 Desa Cibolang Kecamatan Cisaat.
                         Seiring dengan adanya pemekaran wilayah di Kecamatan Cisaat, Kabupaten Sukabumi sejak tahun 2000 SMA Negeri 1 Cisaat termasuk ke dalam wilayah Kecamanatan Gunung Guruh Kabupaten Sukabumi. Namun nama sekolah tetap SMA Negeri 1 Cisaat</p>
-                    <a href="javascript:;" class="text-primary icon-move-right">Baca selengkapnya
+                    <a href="landingpage/detail_sejarah" class="text-primary icon-move-right">Baca selengkapnya
                         <i class="fas fa-arrow-right text-sm ms-1"></i>
                     </a>
                 </div>

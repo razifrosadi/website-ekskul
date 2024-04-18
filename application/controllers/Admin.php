@@ -196,16 +196,13 @@ class Admin extends CI_Controller
 
             $this->ekskul->updateKetuaEskul($ekskul, $ketua);
 
-            $this->user->updateBulk($ketua, $byIdEks[0]['ketua_id']);
+            if ($byIdEks[0]['ketua_id'] != NULL) {
+                $this->user->updateBulk($ketua, $byIdEks[0]['ketua_id']);
+            }
 
 
-            $this->session->set_flashdata('message', '
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Berhasil</strong> registrasi akun ketua
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>');
+
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Ketua telah ditambahkan!</div>');
 
             redirect('admin/registrasi_ketua');
         }

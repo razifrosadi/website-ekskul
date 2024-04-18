@@ -15,7 +15,7 @@
                         <p class="pb-3">
                             Lengkapi Identitasmu Disini!
                         </p>
-                        <form class="text-start" method="post" action="daftar">
+                        <form class="text-start" method="post" action="daftar" enctype="multipart/form-data">
                             <div class="card-body p-0 my-3">
                                 <div class="row">
                                     <div class="col-md-6">
@@ -48,19 +48,30 @@
                                         </select>
                                     </div>
 
-                                </div>
-                                <div class="form-group mb-0 mt-md-0 mt-4">
-                                    <div class="input-group input-group-static mb-4">
-                                        <textarea class="form-control" name="alasan" id="alasan" rows="6" placeholder="Jelaskan alasan kamu, kenapa mau bergabung ekstrakurikuler tersebut! maksimal 250 karakter"></textarea>
+                                    <div class="col-md-6 ps-md-2 mb-4">
+                                        <select class="form-select" id="pengalaman" name="pengalaman" placeholder="Pengalaman">
+                                            <option value="pernah">Pernah</option>
+                                            <option value="tidak pernah">Tidak Pernah</option>
+                                        </select>
                                     </div>
-                                    <?= form_error('alasan', '<small class="text-danger"">', '</small>') ?>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12 text-center">
-                                        <button type="submit" class="btn bg-gradient-primary mt-3 mb-0">DAFTAR</button>
+
+                                    <div class="form-group">
+                                        <label for="sertifikat">Sertifikat jika ada</label>
+                                        <input type="file" class="form-control" name="image_sertifikat" placeholder="Masukan sertifikat jika ada">
+                                    </div>
+
+                                    <div class="form-group mb-0 mt-md-0 mt-4">
+                                        <div class="input-group input-group-static mb-4">
+                                            <textarea class="form-control" name="alasan" id="alasan" rows="6" placeholder="Jelaskan alasan kamu, kenapa mau bergabung ekstrakurikuler tersebut! maksimal 250 karakter"></textarea>
+                                        </div>
+                                        <?= form_error('alasan', '<small class="text-danger"">', '</small>') ?>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 text-center">
+                                            <button type="submit" class="btn bg-gradient-primary mt-3 mb-0">DAFTAR</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                         </form>
                     </div>
                 </div>

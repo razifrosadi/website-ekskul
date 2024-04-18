@@ -9,9 +9,9 @@
                      </a>
 
                      <div class="nav-item ms-lg-auto">
-                         <a class="nav-link nav-link-icon me-2" href="https://github.com/creativetimofficial/material-kit" target="_blank">
+                         <a class="nav-link nav-link-icon me-2" href="https://github.com/razifrosadi/website-ekskul" target="_blank">
                              <i class="fa fa-github me-1"></i>
-                             <p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Star us on Github">Github</p>
+                             <p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip" data-bs-placement="bottom" title="source code website-ekskul">Github</p>
                          </a>
                      </div>
                      <div class="nav-item my-auto ms-3 ms-lg-0">

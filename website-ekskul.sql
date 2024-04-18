@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 11 Jul 2023 pada 16.45
+-- Waktu pembuatan: 16 Jul 2023 pada 17.41
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.0.28
 
@@ -46,7 +46,8 @@ INSERT INTO `berita` (`id_berita`, `judul_berita`, `deskripsi_berita`, `tanggal_
 (8, 'Selamat ZHEPRASCA Smancis', 'Juara umum LKBB PASHION SMKS 1 PGRI Kota Sukabumi', '2023-07-03 12:37:24', 'WhatsApp_Image_2023-01-26_at_21_59_45_(2).jpeg', '', ''),
 (9, 'Kegiatan Demonstrasi ', 'Pertunjukan Tari dari Sentasic memeriahkan acara demo ekskul!', '2023-07-03 12:49:54', 'WhatsApp-Image-2021-07-12-at-10_49_48-370x370.jpeg', '', ''),
 (10, 'Selamat ZHEPRASCA Smancis', 'Juara umum LKBB PASHION SMKS 1 PGRI Kota Sukabumi', '2023-07-09 03:46:29', 'WhatsApp_Image_2023-01-26_at_21_59_45_(1).jpeg', 'WhatsApp-Image-2021-07-05-at-14_33_25-2-370x370.jpeg', 'Zheprasca Smancis meraih Juara Umum pada lomba LKBB PASHION CUP yang dilaksanakan di SMKS 1 PGRI Kota Sukabumi. diantaranya ialah meraih Juara Bina 1, Juara Harapan Bina 1, dan Juara Kostum Terbaik ke-2. '),
-(11, 'Selamat Taekwondo Smancis!', 'Meraih Juara 2 ', '2023-07-09 04:01:13', 'WhatsApp_Image_2023-01-26_at_21_59_45.jpeg', '', 'Selamat! Indra Lesmana Kelas XII IPS 2 meraih medali perak piala Menpora 2022 Everest Tekwondo Championship kelas senior 54 kg, Kejuaraan Taekwondo Tingkat Nasional di GOR Ciracas Jakarta Timur.');
+(11, 'Selamat Taekwondo Smancis!', 'Meraih Juara 2 ', '2023-07-09 04:01:13', 'WhatsApp_Image_2023-01-26_at_21_59_45.jpeg', '', 'Selamat! Indra Lesmana Kelas XII IPS 2 meraih medali perak piala Menpora 2022 Everest Tekwondo Championship kelas senior 54 kg, Kejuaraan Taekwondo Tingkat Nasional di GOR Ciracas Jakarta Timur.'),
+(12, 'Diklat Basket', 'yang dilaksanakan di Villa Resti', '2023-07-11 17:30:23', 'basca1.jpg', 'diklat_basket.jpeg', 'Basket melaksanakan diklat di Villa resti yang bertujuan untuk memperkuat tali silaturahmi');
 
 -- --------------------------------------------------------
 
@@ -60,22 +61,24 @@ CREATE TABLE `ekskul` (
   `kategori_ekskul_id` int(11) DEFAULT NULL,
   `ketua_id` int(11) DEFAULT NULL,
   `logo_ekskul` varchar(128) NOT NULL,
-  `jadwal_latihan` varchar(128) NOT NULL
+  `jadwal_latihan` varchar(128) NOT NULL,
+  `deskripsi` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `ekskul`
 --
 
-INSERT INTO `ekskul` (`ekskul_id`, `nama_ekskul`, `kategori_ekskul_id`, `ketua_id`, `logo_ekskul`, `jadwal_latihan`) VALUES
-(15, 'Pramuka', 1, 9, 'pramuka.png', 'Selasa dan Rabu Pukul 15.00'),
-(16, 'Basket', 2, 11, 'basca1.png', 'Rabu dan Jum\'at Pukul 15.00'),
-(17, 'Futsal', 2, 14, 'futsal.png', 'Selasa dan Kamis Pukul 15.00'),
-(18, 'Taekwondo', 2, NULL, 'WhatsApp_Image_2023-01-26_at_21_48_05.jpeg', 'Rabu dan Jum\'at Pukul 15.00'),
-(19, 'Seni Musik dan Tari', 4, NULL, 'sentasic.png', 'Selasa dan Jum\'at Pukul 15.00'),
-(20, 'Jappanese Club', 5, 16, 'WhatsApp-Image-2021-08-06-at-15_08_09-370x370.jpeg', 'Senin dan Selasa Pukul 15.00'),
-(21, 'Pencak Silat', 2, NULL, 'silat.png', 'Rabu dan Jum\'at Pukul 15.00'),
-(22, 'Karate', 2, NULL, 'karate.png', 'Rabu dan Kamis Pukul 15.00');
+INSERT INTO `ekskul` (`ekskul_id`, `nama_ekskul`, `kategori_ekskul_id`, `ketua_id`, `logo_ekskul`, `jadwal_latihan`, `deskripsi`) VALUES
+(15, 'Pramuka', 1, 20, 'pramuka.png', 'Selasa dan Rabu Pukul 15.00', ''),
+(16, 'Basket', 2, 18, 'basca1.png', 'Rabu dan Jum\'at Pukul 15.00', 'Basketball Of SMAN 1 Cisaat atau disingkat BASCA merupakan salah satu organisasi basket yang ada di smancis, bertujuan mempererat tali silaturahmi antar anggota dan alumni. '),
+(17, 'Futsal', 2, 17, 'futsal.png', 'Selasa dan Kamis Pukul 15.00', ''),
+(18, 'Taekwondo', 2, NULL, 'WhatsApp_Image_2023-01-26_at_21_48_05.jpeg', 'Rabu dan Jum\'at Pukul 15.00', ''),
+(19, 'Seni Musik dan Tari', 4, NULL, 'sentasic.png', 'Selasa dan Jum\'at Pukul 15.00', ''),
+(20, 'Jappanese Club', 5, 19, 'WhatsApp-Image-2021-08-06-at-15_08_09-370x370.jpeg', 'Senin dan Selasa Pukul 15.00', ''),
+(21, 'Pencak Silat', 2, NULL, 'silat.png', 'Rabu dan Jum\'at Pukul 15.00', ''),
+(22, 'Karate', 2, NULL, 'karate.png', 'Rabu dan Kamis Pukul 15.00', ''),
+(24, 'Paskibra', 1, NULL, 'zheprasca2.png', 'Senin dan Rabu Pukul 15.00', '');
 
 -- --------------------------------------------------------
 
@@ -119,7 +122,9 @@ CREATE TABLE `kelas` (
 INSERT INTO `kelas` (`id_kelas`, `kelas`) VALUES
 (1, 'X IPA 1'),
 (2, 'X IPS 1'),
-(3, 'X IPS 2');
+(3, 'X IPS 2'),
+(4, 'X IPA 2'),
+(5, 'X IPA 3');
 
 -- --------------------------------------------------------
 
@@ -140,7 +145,7 @@ CREATE TABLE `pelatih` (
 --
 
 INSERT INTO `pelatih` (`id_pelatih`, `nama_pelatih`, `id_ekskul`, `deskripsi_pelatih`, `image_pelatih`) VALUES
-(2, 'Frihat Firmansyah', 16, 'Tiga kali membawa juara tingkat kabupaten/kota', 'default.jpg');
+(2, 'Frihat Firmansyah', 16, 'Tiga kali membawa juara tingkat kabupaten/kota.', 'basca11.jpg');
 
 -- --------------------------------------------------------
 
@@ -158,17 +163,6 @@ CREATE TABLE `siswa` (
   `status` enum('Diterima','Ditolak','Pending') DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data untuk tabel `siswa`
---
-
-INSERT INTO `siswa` (`id_siswa`, `nama_lengkap`, `no_wa`, `kelas_id`, `ekskul_id`, `alasan`, `status`, `user_id`) VALUES
-(3, 'dwi fahriza', '09873672882', 2, 15, 'gabut', 'Ditolak', 15),
-(4, 'Wildan', '097768789', 2, 15, 'gabut', 'Diterima', 13),
-(5, 'fauzy', '0976567', 3, 15, 'okeh', 'Diterima', 14),
-(13, 'hilman', '09873672882', 1, 16, 'gabut', 'Diterima', 12),
-(15, 'rafli', '09873672882', 2, 20, 'gabut', 'Pending', 16);
 
 -- --------------------------------------------------------
 
@@ -190,7 +184,10 @@ CREATE TABLE `tambah_informasi` (
 --
 
 INSERT INTO `tambah_informasi` (`id_informasi`, `judul_informasi`, `deskripsi_informasi`, `tanggal_informasi`, `image_informasi`, `ekskul_id`) VALUES
-(8, 'Diklat Pramuka', 'Cmoing blok', '2023-07-08 19:16:39', '4998774_25787451.jpg', 15);
+(8, 'Diklat Pramuka', 'Cmoing blok', '2023-07-08 19:16:39', '4998774_25787451.jpg', 15),
+(9, 'Diklat Basket ke 3', 'Berlokasi di Villa Resti Kadudampit.', '2023-07-12 04:18:04', 'basca14.jpg', 16),
+(10, 'Pramuka', 'Camping blok', '2023-07-11 17:50:26', 'pramuka.jpeg', 15),
+(11, 'Anniversary Basca ke-7', 'Berlokasi di Villa Resti Kadudampit.', '2023-07-07 11:39:00', 'diklat_basket3.jpeg', 16);
 
 -- --------------------------------------------------------
 
@@ -214,14 +211,11 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `email`, `image`, `password`, `role_id`, `is_active`, `date_created`) VALUES
-(9, 'razifrosadi', 'razifilham.12@gmail.com', 'default.jpg', '$2y$10$CLCp94t6lw9Ss6joVzSBUeA8zWF0TQkT2Ley2mYTaJWzzs/mZYXR2', 3, 1, 1687155816),
-(10, 'admin', 'admin@gmail.com', 'default.jpg', '$2y$10$aC5Dz3rIxXpyAwaJHtnI7ewkX6G1mp0ni4VlT/jcgX.BmtrNuAIRu', 1, 1, 1687196419),
-(11, 'basket', 'basket@gmail.com', 'default.jpg', '$2y$10$7y.sRost4omQ18toOQU/5u1heupKqGVjP4kU0r6yXAe1aPP2xpypW', 3, 1, 1687220107),
-(12, 'hilman', 'hilman@gmail.com', 'default.jpg', '$2y$10$Qd1HL2xEUxcGlZk1rdZZju4rNyTVSSYjpJksCgvrLsdB6O5smHIa2', 2, 1, 1687502215),
-(13, 'wildan', 'wildan@gmail.com', 'default.jpg', '$2y$10$JDFdyYhnH4djoBT/3tlyp.hAmD9ccA3Blff5YRLvFd6rsDq8qyyeq', 2, 1, 1687507678),
-(14, 'fauzy', 'fauzy@gmail.com', 'default.jpg', '$2y$10$FMwCHcdQbCVLZjnc8ZQj7.k5JkF8D.NS70pBz0djL2hLneLAAq2yW', 3, 1, 1687508026),
-(15, 'dwi fahriza', 'dwifahriza@gmail.com', 'default.jpg', '$2y$10$NcnhTHFKjdOHLVQyV9RC.uXzM2l8Ll4MAnaHCLKW17tLPJ/nnmKOe', 2, 1, 1687508240),
-(16, 'rafli', 'rafli@gmail.com', 'default.jpg', '$2y$10$Qf2sj3cTdCP2WUOhqK4OzeESvhAcslJJaZpQWxNxE8LZ0mwGpeIo6', 3, 1, 1689008037);
+(10, 'admin', 'admin@gmail.com', 'default.jpg', '$2y$10$OxsqrAy60oVnepO1DmvgXePIjj6g0CTQKWKFokS3Or0hN2PZhjW1C', 1, 1, 1687196419),
+(17, 'razifrosadi', 'razifrosadi@gmail.com', 'default.jpg', '$2y$10$DbTzQKHT2/5EnJ0bM1KdI.d73T.VdATPqmeo/HkjmFK.sp2lTMCuy', 3, 1, 1689344724),
+(18, 'hilman', 'hilman@gmail.com', 'default.jpg', '$2y$10$qBTzRgDdioZxvlfc4Jnghe5OnRIf1tmxG.WAjzQBr1T7GtCtqoBv2', 3, 1, 1689344809),
+(19, 'wildan', 'wildan@gmail.com', 'default.jpg', '$2y$10$yDSAhfb.vA/iFERlZWa74evKa8vUl3m0Jm8RDrM4tJTw.Y7nv5TP6', 3, 1, 1689345073),
+(20, 'rafli', 'rafli@gmail.com', 'default.jpg', '$2y$10$YW9qQEzZjcc4jXosuvpJeOUBlyooxFJIKr5c6khoXEQsSxj1uV.4a', 3, 1, 1689345145);
 
 -- --------------------------------------------------------
 
@@ -323,7 +317,8 @@ INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`, `is_active
 (16, 5, 'Informasi Ekstrakurikuler', 'siswa/terima_informasi', '<svg class=\"text-dark\" width=\"16px\" height=\"16px\" viewBox=\"0 0 42 42\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"> <g id=\"Basic-Elements\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\"> <g id=\"Rounded-Icons\" transform=\"translate(-2319.000000, -291.000000)\" fill=\"#FFFFFF\" fill-rule=\"nonzero\"> <g id=\"Icons-with-opacity\" transform=\"translate(1716.000000, 291.000000)\"> <g id=\"box-3d-50\" transform=\"translate(603.000000, 0.000000)\"> <path class=\"color-background\" d=\"M22.7597136,19.3090182 L38.8987031,11.2395234 C39.3926816,10.9925342 39.592906,10.3918611 39.3459167,9.89788265 C39.249157,9.70436312 39.0922432,9.5474453 38.8987261,9.45068056 L20.2741875,0.1378125 L20.2741875,0.1378125 C19.905375,-0.04725 19.469625,-0.04725 19.0995,0.1378125 L3.1011696,8.13815822 C2.60720568,8.38517662 2.40701679,8.98586148 2.6540352,9.4798254 C2.75080129,9.67332903 2.90771305,9.83023153 3.10122239,9.9269862 L21.8652864,19.3090182 C22.1468139,19.4497819 22.4781861,19.4497819 22.7597136,19.3090182 Z\" id=\"Path\"></path> <path class=\"color-background\" d=\"M23.625,22.429159 L23.625,39.8805372 C23.625,40.4328219 24.0727153,40.8805372 24.625,40.8805372 C24.7802551,40.8805372 24.9333778,40.8443874 25.0722402,40.7749511 L41.2741875,32.673375 L41.2741875,32.673375 C41.719125,32.4515625 42,31.9974375 42,31.5 L42,14.241659 C42,13.6893742 41.5522847,13.241659 41,13.241659 C40.8447549,13.241659 40.6916418,13.2778041 40.5527864,13.3472318 L24.1777864,21.5347318 C23.8390024,21.7041238 23.625,22.0503869 23.625,22.429159 Z\" id=\"Path\" opacity=\"0.7\"></path> <path class=\"color-background\" d=\"M20.4472136,21.5347318 L1.4472136,12.0347318 C0.953235098,11.7877425 0.352562058,11.9879669 0.105572809,12.4819454 C0.0361450918,12.6208008 6.47121774e-16,12.7739139 0,12.929159 L0,30.1875 L0,30.1875 C0,30.6849375 0.280875,31.1390625 0.7258125,31.3621875 L19.5528096,40.7750766 C20.0467945,41.0220531 20.6474623,40.8218132 20.8944388,40.3278283 C20.963859,40.1889789 21,40.0358742 21,39.8806379 L21,22.429159 C21,22.0503869 20.7859976,21.7041238 20.4472136,21.5347318 Z\" id=\"Path\" opacity=\"0.7\"></path> </g> </g> </g> </g> </svg>       ', 1),
 (17, 1, 'Berita', 'admin/berita', '<svg class=\"text-dark\" width=\"16px\" height=\"16px\" viewBox=\"0 0 40 40\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"> <title>spaceship</title> <g id=\"Basic-Elements\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\"> <g id=\"Rounded-Icons\" transform=\"translate(-1720.000000, -592.000000)\" fill=\"#FFFFFF\" fill-rule=\"nonzero\"> <g id=\"Icons-with-opacity\" transform=\"translate(1716.000000, 291.000000)\"> <g id=\"spaceship\" transform=\"translate(4.000000, 301.000000)\"> <path class=\"color-background\" d=\"M39.3,0.706666667 C38.9660984,0.370464027 38.5048767,0.192278529 38.0316667,0.216666667 C14.6516667,1.43666667 6.015,22.2633333 5.93166667,22.4733333 C5.68236407,23.0926189 5.82664679,23.8009159 6.29833333,24.2733333 L15.7266667,33.7016667 C16.2013871,34.1756798 16.9140329,34.3188658 17.535,34.065 C17.7433333,33.98 38.4583333,25.2466667 39.7816667,1.97666667 C39.8087196,1.50414529 39.6335979,1.04240574 39.3,0.706666667 Z M25.69,19.0233333 C24.7367525,19.9768687 23.3029475,20.2622391 22.0572426,19.7463614 C20.8115377,19.2304837 19.9992882,18.0149658 19.9992882,16.6666667 C19.9992882,15.3183676 20.8115377,14.1028496 22.0572426,13.5869719 C23.3029475,13.0710943 24.7367525,13.3564646 25.69,14.31 C26.9912731,15.6116662 26.9912731,17.7216672 25.69,19.0233333 L25.69,19.0233333 Z\"></path> <path class=\"color-background\" d=\"M1.855,31.4066667 C3.05106558,30.2024182 4.79973884,29.7296005 6.43969145,30.1670277 C8.07964407,30.6044549 9.36054508,31.8853559 9.7979723,33.5253085 C10.2353995,35.1652612 9.76258177,36.9139344 8.55833333,38.11 C6.70666667,39.9616667 0,40 0,40 C0,40 0,33.2566667 1.855,31.4066667 Z\" id=\"Path\"></path> <path class=\"color-background\" d=\"M17.2616667,3.90166667 C12.4943643,3.07192755 7.62174065,4.61673894 4.20333333,8.04166667 C3.31200265,8.94126033 2.53706177,9.94913142 1.89666667,11.0416667 C1.5109569,11.6966059 1.61721591,12.5295394 2.155,13.0666667 L5.47,16.3833333 C8.55036617,11.4946947 12.5559074,7.25476565 17.2616667,3.90166667 L17.2616667,3.90166667 Z\" id=\"color-2\" opacity=\"0.598539807\"></path> <path class=\"color-background\" d=\"M36.0983333,22.7383333 C36.9280725,27.5056357 35.3832611,32.3782594 31.9583333,35.7966667 C31.0587397,36.6879974 30.0508686,37.4629382 28.9583333,38.1033333 C28.3033941,38.4890431 27.4704606,38.3827841 26.9333333,37.845 L23.6166667,34.53 C28.5053053,31.4496338 32.7452344,27.4440926 36.0983333,22.7383333 L36.0983333,22.7383333 Z\" id=\"color-3\" opacity=\"0.598539807\"></path> </g> </g> </g> </g> </svg>       ', 1),
 (18, 1, 'Pelatih', 'admin/pelatih', '<svg class=\"text-dark\" width=\"16px\" height=\"16px\" viewBox=\"0 0 46 42\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"> <title>customer-support</title> <g id=\"Basic-Elements\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\"> <g id=\"Rounded-Icons\" transform=\"translate(-1717.000000, -291.000000)\" fill=\"#FFFFFF\" fill-rule=\"nonzero\"> <g id=\"Icons-with-opacity\" transform=\"translate(1716.000000, 291.000000)\"> <g id=\"customer-support\" transform=\"translate(1.000000, 0.000000)\"> <path class=\"color-background\" d=\"M45,0 L26,0 C25.447,0 25,0.447 25,1 L25,20 C25,20.379 25.214,20.725 25.553,20.895 C25.694,20.965 25.848,21 26,21 C26.212,21 26.424,20.933 26.6,20.8 L34.333,15 L45,15 C45.553,15 46,14.553 46,14 L46,1 C46,0.447 45.553,0 45,0 Z\" id=\"Path\" opacity=\"0.59858631\"></path> <path class=\"color-foreground\" d=\"M22.883,32.86 C20.761,32.012 17.324,31 13,31 C8.676,31 5.239,32.012 3.116,32.86 C1.224,33.619 0,35.438 0,37.494 L0,41 C0,41.553 0.447,42 1,42 L25,42 C25.553,42 26,41.553 26,41 L26,37.494 C26,35.438 24.776,33.619 22.883,32.86 Z\" id=\"Path\"></path> <path class=\"color-foreground\" d=\"M13,28 C17.432,28 21,22.529 21,18 C21,13.589 17.411,10 13,10 C8.589,10 5,13.589 5,18 C5,22.529 8.568,28 13,28 Z\" id=\"Path\"></path> </g> </g> </g> </g> </svg>  ', 1),
-(20, 3, 'Anggota', 'ketua/anggota', '<svg class=\"text-dark\" width=\"16px\" height=\"16px\" viewBox=\"0 0 46 42\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"> <title>customer-support</title> <g id=\"Basic-Elements\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\"> <g id=\"Rounded-Icons\" transform=\"translate(-1717.000000, -291.000000)\" fill=\"#FFFFFF\" fill-rule=\"nonzero\"> <g id=\"Icons-with-opacity\" transform=\"translate(1716.000000, 291.000000)\"> <g id=\"customer-support\" transform=\"translate(1.000000, 0.000000)\"> <path class=\"color-background\" d=\"M45,0 L26,0 C25.447,0 25,0.447 25,1 L25,20 C25,20.379 25.214,20.725 25.553,20.895 C25.694,20.965 25.848,21 26,21 C26.212,21 26.424,20.933 26.6,20.8 L34.333,15 L45,15 C45.553,15 46,14.553 46,14 L46,1 C46,0.447 45.553,0 45,0 Z\" id=\"Path\" opacity=\"0.59858631\"></path> <path class=\"color-foreground\" d=\"M22.883,32.86 C20.761,32.012 17.324,31 13,31 C8.676,31 5.239,32.012 3.116,32.86 C1.224,33.619 0,35.438 0,37.494 L0,41 C0,41.553 0.447,42 1,42 L25,42 C25.553,42 26,41.553 26,41 L26,37.494 C26,35.438 24.776,33.619 22.883,32.86 Z\" id=\"Path\"></path> <path class=\"color-foreground\" d=\"M13,28 C17.432,28 21,22.529 21,18 C21,13.589 17.411,10 13,10 C8.589,10 5,13.589 5,18 C5,22.529 8.568,28 13,28 Z\" id=\"Path\"></path> </g> </g> </g> </g> </svg>  ', 1);
+(20, 3, 'Anggota', 'ketua/anggota', '<svg class=\"text-dark\" width=\"16px\" height=\"16px\" viewBox=\"0 0 46 42\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"> <title>customer-support</title> <g id=\"Basic-Elements\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\"> <g id=\"Rounded-Icons\" transform=\"translate(-1717.000000, -291.000000)\" fill=\"#FFFFFF\" fill-rule=\"nonzero\"> <g id=\"Icons-with-opacity\" transform=\"translate(1716.000000, 291.000000)\"> <g id=\"customer-support\" transform=\"translate(1.000000, 0.000000)\"> <path class=\"color-background\" d=\"M45,0 L26,0 C25.447,0 25,0.447 25,1 L25,20 C25,20.379 25.214,20.725 25.553,20.895 C25.694,20.965 25.848,21 26,21 C26.212,21 26.424,20.933 26.6,20.8 L34.333,15 L45,15 C45.553,15 46,14.553 46,14 L46,1 C46,0.447 45.553,0 45,0 Z\" id=\"Path\" opacity=\"0.59858631\"></path> <path class=\"color-foreground\" d=\"M22.883,32.86 C20.761,32.012 17.324,31 13,31 C8.676,31 5.239,32.012 3.116,32.86 C1.224,33.619 0,35.438 0,37.494 L0,41 C0,41.553 0.447,42 1,42 L25,42 C25.553,42 26,41.553 26,41 L26,37.494 C26,35.438 24.776,33.619 22.883,32.86 Z\" id=\"Path\"></path> <path class=\"color-foreground\" d=\"M13,28 C17.432,28 21,22.529 21,18 C21,13.589 17.411,10 13,10 C8.589,10 5,13.589 5,18 C5,22.529 8.568,28 13,28 Z\" id=\"Path\"></path> </g> </g> </g> </g> </svg>  ', 1),
+(22, 2, 'Ubah Kata Sandi', 'user/changepass', '<svg class=\"text-dark\" width=\"16px\" height=\"16px\" viewBox=\"0 0 40 40\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"> <title>settings</title> <g id=\"Basic-Elements\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\"> <g id=\"Rounded-Icons\" transform=\"translate(-2020.000000, -442.000000)\" fill=\"#FFFFFF\" fill-rule=\"nonzero\"> <g id=\"Icons-with-opacity\" transform=\"translate(1716.000000, 291.000000)\"> <g id=\"settings\" transform=\"translate(304.000000, 151.000000)\"> <polygon class=\"color-background\" id=\"Path\" opacity=\"0.596981957\" points=\"18.0883333 15.7316667 11.1783333 8.82166667 13.3333333 6.66666667 6.66666667 0 0 6.66666667 6.66666667 13.3333333 8.82166667 11.1783333 15.315 17.6716667\"></polygon> <path class=\"color-background\" d=\"M31.5666667,23.2333333 C31.0516667,23.2933333 30.53,23.3333333 30,23.3333333 C29.4916667,23.3333333 28.9866667,23.3033333 28.48,23.245 L22.4116667,30.7433333 L29.9416667,38.2733333 C32.2433333,40.575 35.9733333,40.575 38.275,38.2733333 L38.275,38.2733333 C40.5766667,35.9716667 40.5766667,32.2416667 38.275,29.94 L31.5666667,23.2333333 Z\" id=\"Path\" opacity=\"0.596981957\"></path> <path class=\"color-background\" d=\"M33.785,11.285 L28.715,6.215 L34.0616667,0.868333333 C32.82,0.315 31.4483333,0 30,0 C24.4766667,0 20,4.47666667 20,10 C20,10.99 20.1483333,11.9433333 20.4166667,12.8466667 L2.435,27.3966667 C0.95,28.7083333 0.0633333333,30.595 0.00333333333,32.5733333 C-0.0583333333,34.5533333 0.71,36.4916667 2.11,37.89 C3.47,39.2516667 5.27833333,40 7.20166667,40 C9.26666667,40 11.2366667,39.1133333 12.6033333,37.565 L27.1533333,19.5833333 C28.0566667,19.8516667 29.01,20 30,20 C35.5233333,20 40,15.5233333 40,10 C40,8.55166667 39.685,7.18 39.1316667,5.93666667 L33.785,11.285 Z\" id=\"Path\"></path> </g> </g> </g> </g> </svg>       ', 1);
 
 --
 -- Indexes for dumped tables
@@ -418,13 +413,13 @@ ALTER TABLE `user_sub_menu`
 -- AUTO_INCREMENT untuk tabel `berita`
 --
 ALTER TABLE `berita`
-  MODIFY `id_berita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_berita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT untuk tabel `ekskul`
 --
 ALTER TABLE `ekskul`
-  MODIFY `ekskul_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `ekskul_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT untuk tabel `kategori_ekskul`
@@ -436,31 +431,31 @@ ALTER TABLE `kategori_ekskul`
 -- AUTO_INCREMENT untuk tabel `kelas`
 --
 ALTER TABLE `kelas`
-  MODIFY `id_kelas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_kelas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `pelatih`
 --
 ALTER TABLE `pelatih`
-  MODIFY `id_pelatih` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pelatih` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `siswa`
 --
 ALTER TABLE `siswa`
-  MODIFY `id_siswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_siswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT untuk tabel `tambah_informasi`
 --
 ALTER TABLE `tambah_informasi`
-  MODIFY `id_informasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_informasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_access_menu`
@@ -484,7 +479,7 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT untuk tabel `user_sub_menu`
 --
 ALTER TABLE `user_sub_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

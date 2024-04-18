@@ -26,6 +26,9 @@ class Siswa extends CI_Controller
         $this->form_validation->set_rules('nama_lengkap', 'Nama Lengkap', 'required');
         $this->form_validation->set_rules('no_wa', 'Whatsapp', 'required');
         $this->form_validation->set_rules('alasan', 'Alasan', 'required');
+        $this->form_validation->set_rules('pengalaman', 'Pengalaman', 'required');
+
+
 
         if ($this->form_validation->run() == false) {
             if (!$data['siswaterima']) {
@@ -46,15 +49,33 @@ class Siswa extends CI_Controller
             $wa = $this->input->post('no_wa');
             $kelas = $this->input->post('kelas');
             $ekskul = $this->input->post('ekskul');
+            $pengalaman = $this->input->post('pengalaman');
             $alasan = $this->input->post('alasan');
 
-            // var_dump($kelas, $ekskul, $nama, $alasan);
+            $upload_img = $_FILES['image_sertifikat']['name'];
+            // var_dump($upload_img);
             // die();
+
+            if ($upload_img) {
+                $config['upload_path']      = './assets/img/logo_ekskul/';
+                $config['allowed_types']    = 'jpg|png|jpeg';
+                $config['max_size']         = '2048';
+
+                $this->load->library('upload', $config);
+                if (!$this->upload->do_upload('image_sertifikat')) {
+                    echo "Upload gagal";
+                    die();
+                } else {
+                    $upload_img = $this->upload->data('file_name');
+                    $this->db->set('image_sertifikat', $upload_img);
+                }
+            }
 
             $this->db->set('nama_lengkap', $nama);
             $this->db->set('no_wa', $wa);
             $this->db->set('kelas_id', $kelas);
             $this->db->set('ekskul_id', $ekskul);
+            $this->db->set('pengalaman', $pengalaman);
             $this->db->set('alasan', $alasan);
             $this->db->set('status', 'Pending');
             $this->db->set('user_id', $data['user']['id']);
@@ -64,6 +85,7 @@ class Siswa extends CI_Controller
             redirect('siswa/daftar');
         }
     }
+
 
     public function terima_informasi()
     {

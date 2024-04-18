@@ -72,4 +72,13 @@ class Landingpage extends CI_Controller
         $this->load->view('landingpage/deskripsi_ekskul', $data);
         $this->load->view('templates/landingpage_footer');
     }
+
+    public function detail_sejarah()
+    {
+        $this->load->view('templates/header');
+        // $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/landingpage_topbar');
+        $this->load->view('landingpage/detail_sejarah');
+        $this->load->view('templates/landingpage_footer');
+    }
 }

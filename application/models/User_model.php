@@ -26,6 +26,7 @@ class User_model extends CI_Model
 
     public function updateBulk($idNewKetua, $idOldKetua)
     {
+
         $query = "UPDATE user SET role_id = (CASE id WHEN $idNewKetua THEN 3 WHEN $idOldKetua THEN 2 END) WHERE id IN($idNewKetua, $idOldKetua)";
         return $this->db->query($query);
     }
@@ -50,6 +51,8 @@ class User_model extends CI_Model
         $query = $this->db->get();
         return $query->result_array();
     }
+
+
     public function getUserDataRole()
     {
         $this->db->select('*');
