@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 16 Jul 2023 pada 17.41
+-- Waktu pembuatan: 16 Bulan Mei 2024 pada 12.40
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.0.28
 
@@ -70,7 +70,7 @@ CREATE TABLE `ekskul` (
 --
 
 INSERT INTO `ekskul` (`ekskul_id`, `nama_ekskul`, `kategori_ekskul_id`, `ketua_id`, `logo_ekskul`, `jadwal_latihan`, `deskripsi`) VALUES
-(15, 'Pramuka', 1, 20, 'pramuka.png', 'Selasa dan Rabu Pukul 15.00', ''),
+(15, 'Pramuka', 1, NULL, 'pramuka.png', 'Selasa dan Rabu Pukul 15.00', ''),
 (16, 'Basket', 2, 18, 'basca1.png', 'Rabu dan Jum\'at Pukul 15.00', 'Basketball Of SMAN 1 Cisaat atau disingkat BASCA merupakan salah satu organisasi basket yang ada di smancis, bertujuan mempererat tali silaturahmi antar anggota dan alumni. '),
 (17, 'Futsal', 2, 17, 'futsal.png', 'Selasa dan Kamis Pukul 15.00', ''),
 (18, 'Taekwondo', 2, NULL, 'WhatsApp_Image_2023-01-26_at_21_48_05.jpeg', 'Rabu dan Jum\'at Pukul 15.00', ''),
@@ -145,7 +145,10 @@ CREATE TABLE `pelatih` (
 --
 
 INSERT INTO `pelatih` (`id_pelatih`, `nama_pelatih`, `id_ekskul`, `deskripsi_pelatih`, `image_pelatih`) VALUES
-(2, 'Frihat Firmansyah', 16, 'Tiga kali membawa juara tingkat kabupaten/kota.', 'basca11.jpg');
+(2, 'Frihat Firmansyah', 16, 'Tiga kali membawa juara tingkat kabupaten/kota.', 'default.jpg'),
+(4, 'Sandu Wijaya', 21, 'Membawa Juara 3 tingkat Kabupaten/Kota', 'default.jpg'),
+(5, 'Renzana ', 18, 'Membawa beberapa kali juara tingkat Kab/Kota. dan satu kali Juara Nasional.', 'default.jpg'),
+(6, 'Ali Usman', 15, 'Aktif melakukan aktivitas sosial dan sering mengadakan lomba.', 'default.jpg');
 
 -- --------------------------------------------------------
 
@@ -159,10 +162,20 @@ CREATE TABLE `siswa` (
   `no_wa` varchar(128) NOT NULL,
   `kelas_id` int(11) DEFAULT NULL,
   `ekskul_id` int(11) DEFAULT NULL,
+  `pengalaman` enum('pernah','tidak pernah','','') NOT NULL,
+  `image_sertifikat` varchar(128) NOT NULL,
   `alasan` varchar(250) NOT NULL,
   `status` enum('Diterima','Ditolak','Pending') DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `siswa`
+--
+
+INSERT INTO `siswa` (`id_siswa`, `nama_lengkap`, `no_wa`, `kelas_id`, `ekskul_id`, `pengalaman`, `image_sertifikat`, `alasan`, `status`, `user_id`) VALUES
+(26, 'razifilham', '0895396207663', 1, 16, 'pernah', 'scrum3.png', 'Ingin menambah relasi dan juga meningkatkan skill.', 'Ditolak', 23),
+(27, 'razifilham', '0895396207663', 2, 17, 'tidak pernah', '', 'ingin menigkatkan skill.', 'Diterima', 23);
 
 -- --------------------------------------------------------
 
@@ -187,7 +200,8 @@ INSERT INTO `tambah_informasi` (`id_informasi`, `judul_informasi`, `deskripsi_in
 (8, 'Diklat Pramuka', 'Cmoing blok', '2023-07-08 19:16:39', '4998774_25787451.jpg', 15),
 (9, 'Diklat Basket ke 3', 'Berlokasi di Villa Resti Kadudampit.', '2023-07-12 04:18:04', 'basca14.jpg', 16),
 (10, 'Pramuka', 'Camping blok', '2023-07-11 17:50:26', 'pramuka.jpeg', 15),
-(11, 'Anniversary Basca ke-7', 'Berlokasi di Villa Resti Kadudampit.', '2023-07-07 11:39:00', 'diklat_basket3.jpeg', 16);
+(11, 'Anniversary Basca ke-7', 'Berlokasi di Villa Resti Kadudampit.', '2023-07-07 11:39:00', 'diklat_basket3.jpeg', 16),
+(14, 'Diklat Futsal', 'di Villa', '2023-07-18 04:52:03', 'futsal1.png', 17);
 
 -- --------------------------------------------------------
 
@@ -215,7 +229,12 @@ INSERT INTO `user` (`id`, `name`, `email`, `image`, `password`, `role_id`, `is_a
 (17, 'razifrosadi', 'razifrosadi@gmail.com', 'default.jpg', '$2y$10$DbTzQKHT2/5EnJ0bM1KdI.d73T.VdATPqmeo/HkjmFK.sp2lTMCuy', 3, 1, 1689344724),
 (18, 'hilman', 'hilman@gmail.com', 'default.jpg', '$2y$10$qBTzRgDdioZxvlfc4Jnghe5OnRIf1tmxG.WAjzQBr1T7GtCtqoBv2', 3, 1, 1689344809),
 (19, 'wildan', 'wildan@gmail.com', 'default.jpg', '$2y$10$yDSAhfb.vA/iFERlZWa74evKa8vUl3m0Jm8RDrM4tJTw.Y7nv5TP6', 3, 1, 1689345073),
-(20, 'rafli', 'rafli@gmail.com', 'default.jpg', '$2y$10$YW9qQEzZjcc4jXosuvpJeOUBlyooxFJIKr5c6khoXEQsSxj1uV.4a', 3, 1, 1689345145);
+(20, 'rafli', 'rafli@gmail.com', 'default.jpg', '$2y$10$YW9qQEzZjcc4jXosuvpJeOUBlyooxFJIKr5c6khoXEQsSxj1uV.4a', 2, 1, 1689345145),
+(22, 'syahrizal', 'syahrizal@gmail.com', 'default.jpg', '$2y$10$vb2WebCZPwCqLkpheHKjbuI6NMxIJxX8IPK1HT6jkuWEdyU9ywOay', 2, 1, 1689612573),
+(23, 'razifilham', 'razifilham.12@gmail.com', 'default.jpg', '$2y$10$s42eCzo0OaVfpEv2v01tWOuixo2.jMPOL3B.eKhGlE8C.3G8UWNZe', 2, 1, 1689648228),
+(27, 'nasywa', 'nasywa@gmail.com', 'default.jpg', '$2y$10$BKgJSMklaquMAdcDtlKK6eLiRNBP3pwG3NkDi1LpGTQtjTRExfT06', 2, 0, 1713457242),
+(28, 'jakmaniamagnum', 'jakmaniamagnum@gmail.com', 'default.jpg', '$2y$10$DtGy.Xox.6JBJRmDbM9PkeIYhTeqUROKvAMCkkqCOUW8gj82nB96S', 2, 0, 1713558598),
+(30, 'sobat makan', 'sobatmakan.12@gmail.com', 'default.jpg', '$2y$10$TaNqsWVRq1PuAHtL9c59ceDjgedW1XCDqNbP.5iKXRiaOOF8QbQDa', 2, 1, 1714811949);
 
 -- --------------------------------------------------------
 
@@ -320,6 +339,26 @@ INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`, `is_active
 (20, 3, 'Anggota', 'ketua/anggota', '<svg class=\"text-dark\" width=\"16px\" height=\"16px\" viewBox=\"0 0 46 42\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"> <title>customer-support</title> <g id=\"Basic-Elements\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\"> <g id=\"Rounded-Icons\" transform=\"translate(-1717.000000, -291.000000)\" fill=\"#FFFFFF\" fill-rule=\"nonzero\"> <g id=\"Icons-with-opacity\" transform=\"translate(1716.000000, 291.000000)\"> <g id=\"customer-support\" transform=\"translate(1.000000, 0.000000)\"> <path class=\"color-background\" d=\"M45,0 L26,0 C25.447,0 25,0.447 25,1 L25,20 C25,20.379 25.214,20.725 25.553,20.895 C25.694,20.965 25.848,21 26,21 C26.212,21 26.424,20.933 26.6,20.8 L34.333,15 L45,15 C45.553,15 46,14.553 46,14 L46,1 C46,0.447 45.553,0 45,0 Z\" id=\"Path\" opacity=\"0.59858631\"></path> <path class=\"color-foreground\" d=\"M22.883,32.86 C20.761,32.012 17.324,31 13,31 C8.676,31 5.239,32.012 3.116,32.86 C1.224,33.619 0,35.438 0,37.494 L0,41 C0,41.553 0.447,42 1,42 L25,42 C25.553,42 26,41.553 26,41 L26,37.494 C26,35.438 24.776,33.619 22.883,32.86 Z\" id=\"Path\"></path> <path class=\"color-foreground\" d=\"M13,28 C17.432,28 21,22.529 21,18 C21,13.589 17.411,10 13,10 C8.589,10 5,13.589 5,18 C5,22.529 8.568,28 13,28 Z\" id=\"Path\"></path> </g> </g> </g> </g> </svg>  ', 1),
 (22, 2, 'Ubah Kata Sandi', 'user/changepass', '<svg class=\"text-dark\" width=\"16px\" height=\"16px\" viewBox=\"0 0 40 40\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"> <title>settings</title> <g id=\"Basic-Elements\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\"> <g id=\"Rounded-Icons\" transform=\"translate(-2020.000000, -442.000000)\" fill=\"#FFFFFF\" fill-rule=\"nonzero\"> <g id=\"Icons-with-opacity\" transform=\"translate(1716.000000, 291.000000)\"> <g id=\"settings\" transform=\"translate(304.000000, 151.000000)\"> <polygon class=\"color-background\" id=\"Path\" opacity=\"0.596981957\" points=\"18.0883333 15.7316667 11.1783333 8.82166667 13.3333333 6.66666667 6.66666667 0 0 6.66666667 6.66666667 13.3333333 8.82166667 11.1783333 15.315 17.6716667\"></polygon> <path class=\"color-background\" d=\"M31.5666667,23.2333333 C31.0516667,23.2933333 30.53,23.3333333 30,23.3333333 C29.4916667,23.3333333 28.9866667,23.3033333 28.48,23.245 L22.4116667,30.7433333 L29.9416667,38.2733333 C32.2433333,40.575 35.9733333,40.575 38.275,38.2733333 L38.275,38.2733333 C40.5766667,35.9716667 40.5766667,32.2416667 38.275,29.94 L31.5666667,23.2333333 Z\" id=\"Path\" opacity=\"0.596981957\"></path> <path class=\"color-background\" d=\"M33.785,11.285 L28.715,6.215 L34.0616667,0.868333333 C32.82,0.315 31.4483333,0 30,0 C24.4766667,0 20,4.47666667 20,10 C20,10.99 20.1483333,11.9433333 20.4166667,12.8466667 L2.435,27.3966667 C0.95,28.7083333 0.0633333333,30.595 0.00333333333,32.5733333 C-0.0583333333,34.5533333 0.71,36.4916667 2.11,37.89 C3.47,39.2516667 5.27833333,40 7.20166667,40 C9.26666667,40 11.2366667,39.1133333 12.6033333,37.565 L27.1533333,19.5833333 C28.0566667,19.8516667 29.01,20 30,20 C35.5233333,20 40,15.5233333 40,10 C40,8.55166667 39.685,7.18 39.1316667,5.93666667 L33.785,11.285 Z\" id=\"Path\"></path> </g> </g> </g> </g> </svg>       ', 1);
 
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `user_token`
+--
+
+CREATE TABLE `user_token` (
+  `id` int(11) NOT NULL,
+  `email` varchar(128) NOT NULL,
+  `token` varchar(128) NOT NULL,
+  `date_created` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `user_token`
+--
+
+INSERT INTO `user_token` (`id`, `email`, `token`, `date_created`) VALUES
+(1, 'jakmaniamagnum@gmail.com', 'rJxOK+CihSnV0KfBZEpoKP6t5IyGxzBW0zdaaOJcykY=', 1713558598);
+
 --
 -- Indexes for dumped tables
 --
@@ -406,6 +445,12 @@ ALTER TABLE `user_sub_menu`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `user_token`
+--
+ALTER TABLE `user_token`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
@@ -437,25 +482,25 @@ ALTER TABLE `kelas`
 -- AUTO_INCREMENT untuk tabel `pelatih`
 --
 ALTER TABLE `pelatih`
-  MODIFY `id_pelatih` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_pelatih` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `siswa`
 --
 ALTER TABLE `siswa`
-  MODIFY `id_siswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_siswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT untuk tabel `tambah_informasi`
 --
 ALTER TABLE `tambah_informasi`
-  MODIFY `id_informasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_informasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_access_menu`
@@ -480,6 +525,12 @@ ALTER TABLE `user_role`
 --
 ALTER TABLE `user_sub_menu`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT untuk tabel `user_token`
+--
+ALTER TABLE `user_token`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
